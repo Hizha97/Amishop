@@ -21,5 +21,11 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('welcome_message');
+		$query = $this->db->get('articulos');
+
+        foreach ($query->result() as $row)
+        {
+            echo $row->nombre;
+        }
 	}
 }
