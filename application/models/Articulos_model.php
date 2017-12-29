@@ -13,4 +13,10 @@ class Articulos_model extends CI_Model
         $query = $this->db->get('articulos');
         return $query;
     }
+
+    public function getArticulo($articulo)
+    {
+        $query = $this->db->get_where('articulos', array("nombre" => $articulo));
+        return $query;
+    }
 }
