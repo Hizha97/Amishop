@@ -8,8 +8,8 @@
 
 class Newsletter_model extends CI_Model
 {
-    public function nuevaSubscipcion()
+    public function nuevaSubscipcion($data)
     {
-
+        $this->db->insert('newsletter', $data);
     }
 }
