@@ -4,6 +4,9 @@ class Usuarios extends CI_Controller
 {
     function registrarse()
     {
+        if(isset($_SESSION['isLoggedIn']) and $_SESSION['isLoggedIn'])
+            redirect(site_url());
+
         $this->load->helper("form");
         $this->load->library('form_validation');
 
@@ -44,31 +47,56 @@ class Usuarios extends CI_Controller
 
     function login()
     {
+        if(isset($_SESSION['isLoggedIn']) and $_SESSION['isLoggedIn'])
+            redirect(site_url());
+
         $this->load->helper("form");
         $this->load->library('form_validation');
         $this->form_validation->set_rules('nombreUsuario', 'Nombre de usuario', 'required');
         $this->form_validation->set_rules('contrasena', 'Contraseña', 'required');
 
-        $this->load->view("layout/header", array("title" => "Inicio de sesión"));
-        $this->load->view("layout/navbar");
 
         if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view("layout/header", array("title" => "Inicio de sesión"));
+            $this->load->view("layout/navbar");
             $this->load->view("login", array('error_login' => false));
+        }
         else {
             $this->load->model('usuarios_model');
             if($this->usuarios_model->iniciarSesion())
             {
                 $this->session->set_userdata('isLoggedIn', TRUE);
-                $this->session->set_userdata('name', $this->usuarios_model->getNombre($this->input->post('nombreUsuario')));
+
+                $userdata = $this->usuarios_model->getData($this->input->post('nombreUsuario'));
+                $this->session->set_userdata('name', $userdata['nombre']);
+                $this->session->set_userdata('id', $userdata['id']);
+                $this->session->set_userdata('esAdministrador', $userdata['esAdministrador']);
+                $this->load->view("layout/header", array("title" => "Inicio de sesión"));
+                $this->load->view("layout/navbar");
                 $this->load->view("login_exito");
             }
-            else
-               $this->load->view("login", array('error_login' => true, 'msg' => "El usuario, la contraseña o ambos son incorrectos."));
+            else {
+                $this->load->view("layout/header", array("title" => "Inicio de sesión"));
+                $this->load->view("layout/navbar");
+                $this->load->view("login", array('error_login' => true, 'msg' => "El usuario, la contraseña o ambos son incorrectos."));
+            }
 
         }
 
         $this->load->view("layout/footer");
 
+    }
+
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
+    }
+
+
+    function perfil(){
+        
     }
 }
 ?>

@@ -5,3 +5,10 @@
         El login se ha efectuado con éxito, te redigiremos a tu cuenta.
     </div>
 </div>
+
+
+<script>
+    Window.onload = function() {
+        setTimeout("location.href = '<?php echo base_url() ?>'",3000);
+    };
+</script>
