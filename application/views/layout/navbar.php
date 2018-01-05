@@ -43,6 +43,8 @@
                         echo '<a class="btn btn-secondary" href="'. site_url('usuarios/logout'). '">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>';
                     }
                     else {
+                        echo '<a class="btn btn-secondary mr-3" href="'. site_url('usuarios/registrarse'). '">¡Regístrate!</i></a>';
+
                         echo '<a class="btn btn-secondary" href="'. site_url('usuarios/login'). '">Iniciar sesión <i class="fas fa-sign-in-alt"></i></a>';
 
                     }
