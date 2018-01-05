@@ -43,16 +43,18 @@ class Usuarios_model extends CI_Model
         else return false;
     }
 
-    public function getNombre($username){
+    public function getData($username){
 
-        $this->db->select('nombre')
+        $this->db->select('id, nombre, esAdministrador')
             ->from('usuarios')
             ->where('nombreUsuario =', $username);
 
         $query = $this->db->get();
 
         if ($query->num_rows() == 1)
-            return $query->result()[0]->nombre;
+            return array("nombre" => $query->result()[0]->nombre,
+                         "id" => $query->result()[0]->id,
+                         "esAdministrador" => $query->result()[0]->esAdministrador);
         else return false;
     }
 }
