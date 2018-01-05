@@ -19,7 +19,7 @@
         echo '<img style="height: 200px; width: 100%; display: block;" src="data:image/jpeg;base64,'.base64_encode($articulo->imagen) .'" />';
         echo '<div class="card-body text-secondary">';
         echo "<h4 class='card-title'> $articulo->precio € </h4>";
-        echo "<p class='card-text'> $articulo->descripcion </p>";
+        echo "<p class='card-text  text-truncate'> $articulo->descripcion </p>";
         echo '</div>';
         //echo '<img style="height: 200px; width: 100%; display: block;" src= alt="Card image">';
             echo '</div>';
