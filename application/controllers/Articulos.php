@@ -27,19 +27,40 @@ class Articulos extends CI_Controller
         $this->load->view("layout/header", array("title" => $amigurumi));
         $this->load->view("layout/navbar");
         $this->load->view("articulo_view", $data);
-        $this->ratings();
-        $this->comentarios();
+        $this->ratings($amigurumi);
+        $this->comentarios($amigurumi);
         $this->load->view("layout/footer");
     }
 
-    public function ratings()
+    public function ratings($amigurumi)
     {
-        $this->load->view("ratings_view");
+        $data = $this->loadArticulos_model($amigurumi);
+
+        $articulos = $data['articulos'];
+        $articulo = $articulos[0];
+        $this->load->view("ratings_view", $articulo);
     }
 
-    public function comentarios()
+    public function comentarios($amigurumi)
     {
+        $data = $this->loadArticulos_model($amigurumi);
+
+        $articulos = $data['articulos'];
+        $articulo = $articulos[0];
+
+        $this->load->model("comentarios_model");
+        $data['comentarios'] = $this->comentarios_model->getComentarios($articulo->id)->result();
+
+        $this->load->model("usuarios_model");
+        $data['usuarios'] = $this->comentarios_model->getComentarios($articulo->id)->result();
+
+
         $this->load->view("comentarios_view");
+    }
+
+    public function nuevoComentario()
+    {
+        echo "holi";
     }
 
     private function loadArticulos_model($amigurumi)

@@ -17,8 +17,22 @@
                         </a>
                         <div class="media-body">
                             <h5 class="mt-0"> <strong><?php echo $articulo->precio . "€"; ?></strong></h5>
-                            <button type="button" class="btn btn-danger disabled">¡Al carrito!</button>
-                            <p class="text-danger">¡Oh no! No puedes añadir al carrito nada sin registarte antes.</p>
+                            <?php
+                                if(isset($_SESSION['isLoggedIn']) and $_SESSION['isLoggedIn'] and $articulo->stock != 0)
+                                {
+                                    echo '<button type="button" class="btn btn-success">¡Al carrito!</button>';
+                                }
+                                else if($articulo->stock == 0)
+                                {
+                                    echo '<button type="button" class="btn btn-danger disabled">¡Al carrito!</button>';
+                                    echo '<p class="text-danger">¡Oh no! No quedan existencias</p>';
+                                }
+                                else
+                                {
+                                    echo '<button type="button" class="btn btn-danger disabled">¡Al carrito!</button>';
+                                    echo '<p class="text-danger">¡Oh no! No puedes añadir al carrito nada sin registarte o iniciar sesión antes.</p>';
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
