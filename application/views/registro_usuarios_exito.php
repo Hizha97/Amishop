@@ -5,3 +5,9 @@
         El registro se ha efectuado con éxito, te redigiremos a tu cuenta.
     </div>
 </div>
+
+<script>
+    window.setTimeout(function() {
+        window.location.href = '<?php echo base_url() ?>';
+    }, 3000);
+</script>

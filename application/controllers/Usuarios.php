@@ -16,8 +16,6 @@ class Usuarios extends CI_Controller
         $this->form_validation->set_rules('nombreUsuario', 'Nombre de usuario', 'required');
         $this->form_validation->set_rules('contrasena', 'Contraseña', 'required');
 
-        $this->load->view("layout/header", array("title" => "Registro"));
-        $this->load->view("layout/navbar");
 
 
         $errorMsgs = array(
@@ -25,11 +23,27 @@ class Usuarios extends CI_Controller
         );
 
         if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view("layout/header", array("title" => "Registro"));
+            $this->load->view("layout/navbar");
             $this->load->view("nuevoUsuario");
+        }
         else {
             $this->load->model('usuarios_model');
-            if ($this->usuarios_model->nuevoUsuario())
+            if ($this->usuarios_model->nuevoUsuario()) {
+                $this->session->set_userdata('isLoggedIn', TRUE);
+
+                $userdata = $this->usuarios_model->getData($this->input->post('nombreUsuario'));
+
+                $this->session->set_userdata('name', $userdata['nombre']);
+                $this->session->set_userdata('id', $userdata['id']);
+                $this->session->set_userdata('esAdministrador', $userdata['esAdministrador']);
+
+                $this->load->view("layout/header", array("title" => "Registro"));
+                $this->load->view("layout/navbar");
                 $this->load->view('registro_usuarios_exito');
+
+            }
             else {
                 $err = $this->db->error();
                 if (array_key_exists($err['code'], $errorMsgs))
@@ -37,6 +51,8 @@ class Usuarios extends CI_Controller
                 else
                     $data['msg'] = "Error desconocido contacte con el administrador.";
 
+                $this->load->view("layout/header", array("title" => "Registro"));
+                $this->load->view("layout/navbar");
                 $this->load->view('registro_usuarios_fallo', $data);
             }
         }
