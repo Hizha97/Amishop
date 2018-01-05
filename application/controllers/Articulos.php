@@ -27,19 +27,24 @@ class Articulos extends CI_Controller
         $this->load->view("layout/header", array("title" => $amigurumi));
         $this->load->view("layout/navbar");
         $this->load->view("articulo_view", $data);
-        $this->ratings();
-        $this->comentarios();
+        $this->ratings($data);
+        $this->comentarios($data);
         $this->load->view("layout/footer");
     }
 
-    public function ratings()
+    public function ratings($data)
     {
         $this->load->view("ratings_view");
     }
 
-    public function comentarios()
+    public function comentarios($data)
     {
         $this->load->view("comentarios_view");
+    }
+
+    public function nuevoComentario()
+    {
+        echo "holi";
     }
 
     private function loadArticulos_model($amigurumi)
