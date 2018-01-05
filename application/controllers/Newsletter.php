@@ -24,8 +24,10 @@ class Newsletter extends CI_Controller
         {
             $this->load->model("newsletter_model");
             $data = array("email" => $this->input->post("email"));
-            $this->newsletter_model->nuevaSubscipcion($data);
-            $this->load->view("newsletter_view");
+            if($this->newsletter_model->nuevaSubscipcion($data))
+               $this->load->view("newsletter_exito");
+            else
+                $this->load->view("newsletter_fallo");
             $this->load->view("layout/footer");
         }
 
