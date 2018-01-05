@@ -63,7 +63,7 @@ class Usuarios_model extends CI_Model
     public function getDataWithId($id)
     {
 
-        $this->db->select('*')
+        $this->db->select('nombre, apellidos, email, nombreUsuario')
             ->from('usuarios')
             ->where('id =', $id);
 

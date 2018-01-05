@@ -30,22 +30,17 @@
 
 
         <ul class="navbar-nav ml-auto">
-            <form class="form-inline mr-3">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-
                 <?php
                     if(isset($_SESSION['isLoggedIn']) and $_SESSION['isLoggedIn'])
                     {
-                        echo '<a class="btn btn-secondary mr-3 text-white">El perfil de '.$_SESSION['name'].' <i class="fas fa-user"></i></a>';
+                        echo '<a class="btn btn-secondary mr-lg-3 text-white" href="'. site_url('perfil'). '">El perfil de '.$_SESSION['name'].' <i class="fas fa-user"></i></a>';
 
-                        echo '<a class="btn btn-secondary" href="'. site_url('usuarios/logout'). '">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>';
+                        echo '<a class="btn btn-secondary mt-3 mt-lg-0" href="'. site_url('usuarios/logout'). '">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>';
                     }
                     else {
-                        echo '<a class="btn btn-secondary mr-3" href="'. site_url('usuarios/registrarse'). '">¡Regístrate!</i></a>';
+                        echo '<a class="btn btn-secondary mr-lg-3 " href="'. site_url('usuarios/registrarse'). '">¡Regístrate!</i></a>';
 
-                        echo '<a class="btn btn-secondary" href="'. site_url('usuarios/login'). '">Iniciar sesión <i class="fas fa-sign-in-alt"></i></a>';
+                        echo '<a class="btn btn-secondary mt-3 mt-lg-0" href="'. site_url('usuarios/login'). '">Iniciar sesión <i class="fas fa-sign-in-alt"></i></a>';
 
                     }
                 ?>

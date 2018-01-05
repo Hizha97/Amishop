@@ -6,9 +6,8 @@
     </div>
 </div>
 
-
 <script>
     window.setTimeout(function() {
-        window.location.href = '<?php echo base_url() ?>';
-    }, 3000);
+        window.location.href = '<?php echo site_url('perfil') ?>';
+    }, 1000);
 </script>
