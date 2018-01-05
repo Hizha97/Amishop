@@ -21,7 +21,7 @@
             echo '<img class="img-thumbnail" display: block;" src="data:image/jpeg;base64,'.base64_encode($articulo->imagen) .'" />';
             echo '<div class="card-body text-secondary">';
             echo "<h4 class='card-title'> $articulo->precio € </h4>";
-            echo "<p class='card-text'> $articulo->descripcion </p>";
+            echo "<p class='card-text  text-truncate'> $articulo->descripcion </p>";
             echo '</div>';
             echo '</div>';
             echo "</div>";
