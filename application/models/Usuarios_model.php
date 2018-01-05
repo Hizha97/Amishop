@@ -24,7 +24,8 @@ class Usuarios_model extends CI_Model
         return $this->db->insert('usuarios', $data);
     }
 
-    public function iniciarSesion(){
+    public function iniciarSesion()
+    {
         $data = array(
             "nombreUsuario" => $this->input->post('nombreUsuario'),
             "contrasena" => $this->input->post('contrasena'),
@@ -32,9 +33,9 @@ class Usuarios_model extends CI_Model
 
 
         $this->db->select('contrasena')
-                 ->from('usuarios')
-                 ->where('nombreUsuario =', $data['nombreUsuario'])
-                 ->or_where('email =', $data['nombreUsuario']);
+            ->from('usuarios')
+            ->where('nombreUsuario =', $data['nombreUsuario'])
+            ->or_where('email =', $data['nombreUsuario']);
 
         $query = $this->db->get();
 
@@ -43,7 +44,8 @@ class Usuarios_model extends CI_Model
         else return false;
     }
 
-    public function getData($username){
+    public function getData($username)
+    {
 
         $this->db->select('id, nombre, esAdministrador')
             ->from('usuarios')
@@ -53,8 +55,26 @@ class Usuarios_model extends CI_Model
 
         if ($query->num_rows() == 1)
             return array("nombre" => $query->result()[0]->nombre,
-                         "id" => $query->result()[0]->id,
-                         "esAdministrador" => $query->result()[0]->esAdministrador);
+                "id" => $query->result()[0]->id,
+                "esAdministrador" => $query->result()[0]->esAdministrador);
         else return false;
     }
+
+    public function getDataWithId($id)
+    {
+
+        $this->db->select('*')
+            ->from('usuarios')
+            ->where('id =', $id);
+
+        $query = $this->db->get();
+        $row = $query->row_array();
+        if(isset($row))
+            return $row;
+        else
+            return false;
+    }
+
+
+
 }
