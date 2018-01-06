@@ -5,7 +5,7 @@
             <div class="card text-white bg-success mb-3" style="max-width: 100rem;">
                 <div class="card-header">¿Desea subscribirse a nuestra newsletter?</div>
                 <div class="card-body">
-                    <h4 class="card-title">¡Genial!</h4>
+                    <h4 class="card-title text-white">¡Genial!</h4>
                     <p class="card-text">¡Estar subscrito significa enterarse antes que nadie de los nuevos productos y ofertas!</p>
                 </div>
             </div>

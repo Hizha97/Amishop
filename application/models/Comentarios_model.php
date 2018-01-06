@@ -13,4 +13,9 @@ class Comentarios_model extends CI_Model
         $query = $this->db->get_where('comentarios', array("idArticulo" => $id));
         return $query;
     }
+
+    public function addComentario($data)
+    {
+        return $this->db->insert('comentarios', $data);
+    }
 }

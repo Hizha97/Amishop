@@ -5,7 +5,7 @@
             <div class="col-sm-3 col-12">
                 <?php
                 if(isset($_SESSION['isLoggedIn']))
-                    echo sprintf('<a class="btn btn-secondary" href="'. site_url('articulos/nuevoComentario/%s'). '">Dejar un comentario</a>',$articulos[0]->nombre);
+                    echo sprintf('<a class="btn btn-secondary" href="'. site_url('articulos/nuevoComentario/%s'). '">Dejar un comentario</a>',$articulos[0]->id);
                 else
                 {
                     echo '<a class="btn btn-danger disabled" href="'. site_url('articulos/nuevoComentario'). '">Dejar un comentario</a>';
