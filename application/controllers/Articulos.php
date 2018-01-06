@@ -56,8 +56,8 @@ class Articulos extends CI_Controller
         {
             $arrayUsuarios[$item->idUsuario] = $this->usuarios_model->getDataWithId($item->idUsuario);
         }
-
-        $data['usuarios'] = $arrayUsuarios;
+        if(isset($arrayUsuarios))
+            $data['usuarios'] = $arrayUsuarios;
         $this->load->view("comentarios_view", $data);
 
     }

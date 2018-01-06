@@ -16,6 +16,7 @@ class Comentarios_model extends CI_Model
 
     public function addComentario($data)
     {
+        var_dump($data);
         return $this->db->insert('comentarios', $data);
     }
 }
