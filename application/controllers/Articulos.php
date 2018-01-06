@@ -34,17 +34,21 @@ class Articulos extends CI_Controller
 
     public function ratings($amigurumi)
     {
-        $data = $this->loadArticulos_model($amigurumi);
+        $this->load->helper("form");
 
+        $data = $this->loadArticulos_model($amigurumi);
         $articulos = $data['articulos'];
         $articulo = $articulos[0];
-        $this->load->view("ratings_view", $articulo);
+
+        $this->load->model("ratings_model");
+        $data['valoraciones'] = $this->ratings_model->getRatings($articulo->id)->result();
+
+        $this->load->view("ratings_view", $data);
     }
 
     public function comentarios($amigurumi)
     {
         $data = $this->loadArticulos_model($amigurumi);
-
         $articulos = $data['articulos'];
         $articulo = $articulos[0];
 
