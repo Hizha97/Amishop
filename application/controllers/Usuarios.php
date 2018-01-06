@@ -30,10 +30,17 @@ class Usuarios extends CI_Controller
         }
         else {
             $this->load->model('usuarios_model');
-            if ($this->usuarios_model->nuevoUsuario()) {
+            $data = array(
+                "nombre" => $this->input->post('nombre'),
+                "apellidos" => $this->input->post('apellidos'),
+                "email" => $this->input->post('email'),
+                "nombreUsuario" => $this->input->post('nombreUsuario'),
+                "contrasena" => $this->input->post('contrasena'),
+            );
+            if ($this->usuarios_model->nuevoUsuario($data)) {
                 $this->session->set_userdata('isLoggedIn', TRUE);
 
-                $userdata = $this->usuarios_model->getData($this->input->post('nombreUsuario'));
+                $userdata = $this->usuarios_model->getData($data['nombreUsuario']);
 
                 $this->session->set_userdata('name', $userdata['nombre']);
                 $this->session->set_userdata('id', $userdata['id']);

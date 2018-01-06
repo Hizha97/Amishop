@@ -16,35 +16,54 @@
         </div>
         <div class="col-12 col-lg-10 mt-5">
             <h1>Tu información actual.</h1>
-            <form action="<?php echo site_url('perfil')?>">
-
-            <fieldset>
             <?php
+
+            if(isset($_SESSION['error']))
+                echo '<span class="badge badge-error">Error</span>';
+            if(isset($_SESSION['success']))
+                echo '<span class="badge badge-success">Cambios realizados correctamente.</span>';
+
+            echo form_open(site_url('perfil'));
+
+            echo '<fieldset>';
                 echo '<div class="form-group row">';
-                    echo '<label for="staticNombre" class="col-sm-2 col-form-label">Nombre</label>';
-                    echo '<div class="col-sm-12">';
-                        echo '<input type="text" readonly="" class="form-control" id="staticNombre" value="'. $datos['nombre'] .'">';
+                    echo '<label for="staticNombre" class="col-12 col-form-label">Nombre</label>';
+                    echo '<div class="col-12">';
+                        echo '<input type="text"  name="nombre" class="form-control" id="staticNombre" value="'. $datos['nombre'] .'">';
                     echo '</div>';
                 echo '</div>';
 
                 echo '<div class="form-group row">';
-                    echo '<label for="staticApellidos" class="col-sm-2 col-form-label">Apellidos</label>';
-                    echo '<div class="col-sm-12">';
-                        echo '<input type="text" readonly="" class="form-control" id="staticApellidos" value="'. $datos['apellidos'] .'">';
+                    echo '<label for="staticApellidos" class="col-12 col-form-label">Apellidos</label>';
+                    echo '<div class="col-12">';
+                        echo '<input type="text"  name="apellidos" class="form-control" id="staticApellidos" value="'. $datos['apellidos'] .'">';
                     echo '</div>';
                 echo '</div>';
 
                 echo '<div class="form-group row">';
-                    echo '<label for="staticNombre" class="col-sm-2 col-form-label">Email</label>';
-                    echo '<div class="col-sm-12">';
-                        echo '<input type="text" readonly="" class="form-control" id="staticEmail" value="'. $datos['email'] .'">';
+                    echo '<label for="staticEmail" class="col-12 col-form-label">Email</label>';
+                    echo '<div class="col-12">';
+                        echo '<input type="email" name="email" class="form-control" id="staticEmail" value="'. $datos['email'] .'">';
                     echo '</div>';
                 echo '</div>';
+
+                echo '<div class="form-group row">';
+                    echo '<label for="staticNombreUsuario" class="col-12 col-form-label">Nombre de Usuario</label>';
+                    echo '<div class="col-12">';
+                        echo '<input type="text" name="nombreUsuario" class="form-control" id="staticNombreUsuario" value="'. $datos['nombreUsuario'] .'">';
+                    echo '</div>';
+                echo '</div>';
+                echo '<div class="form-group row">';
+                    echo '<label for="staticContrasena" class="col-12 col-form-label">Nueva contraseña(solo escribir si se desea una nueva)</label>';
+                    echo '<div class="col-12">';
+                        echo '<input type="password" name="contrasena" class="form-control" id="staticContrasena" value="">';
+                    echo '</div>';
+                echo '</div>';
+
+                echo '<button class="btn float-right btn-primary col-12" type="submit">MODIFICAR DATOS</button>';
+                echo '</fieldset>';
+            echo form_close();
             ?>
-            <button class="btn float-right btn-primary col-12" type="submit">MODIFICAR DATOS</button>
-
-            </fieldset>
-            </form>
         </div>
     </div>
 </div>
