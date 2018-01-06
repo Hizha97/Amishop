@@ -16,10 +16,6 @@ class Perfil extends CI_Controller
         $this->form_validation->set_rules('email', 'Correo electronico', 'required');
         $this->form_validation->set_rules('nombreUsuario', 'Nombre de usuario', 'required');
 
-        $errorMsgs = array(
-            1062 => "Ya hay un usuario con ese nombre de usuario o email.",
-        );
-
         if ($this->form_validation->run() == FALSE)
         {
             $data['datos'] = $this->usuarios_model->getDataWithId($_SESSION['id']);

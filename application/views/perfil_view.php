@@ -12,6 +12,18 @@
                 <a href="<?php echo site_url('perfil/direcciones') ?>" class="list-group-item list-group-item-action">
                     Direcciones
                 </a>
+
+                <?php
+                if(isset($_SESSION['esAdministrador']) and $_SESSION['esAdministrador']) {
+                    echo sprintf('<a href="%s" class="list-group-item list-group-item-action">', site_url('perfil/articulos'));
+                    echo 'Articulos';
+                    echo '</a>';
+
+                    echo sprintf('<a href="%s" class="list-group-item list-group-item-action">', site_url('perfil/usuarios'));
+                    echo 'Usuarios';
+                    echo '</a>';
+                }
+                ?>
             </div>
         </div>
         <div class="col-12 col-lg-10 mt-5">
