@@ -18,7 +18,7 @@
                         <div class="media-body">
                             <h5 class="mt-0"> <strong><?php echo $articulo->precio . "€"; ?></strong></h5>
                             <?php
-                                if(isset($_SESSION['isLoggedIn']) and $_SESSION['isLoggedIn'] and $articulo->stock != 0)
+                                if(isset($_SESSION['isLoggedIn']) and $articulo->stock != 0)
                                 {
                                     echo '<button type="button" class="btn btn-success">¡Al carrito!</button>';
                                 }

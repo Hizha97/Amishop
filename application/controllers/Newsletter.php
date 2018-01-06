@@ -29,6 +29,7 @@ class Newsletter extends CI_Controller
             else
                 $this->load->view("newsletter_fallo");
             $this->load->view("layout/footer");
+
         }
 
 
