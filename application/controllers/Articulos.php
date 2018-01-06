@@ -62,8 +62,9 @@ class Articulos extends CI_Controller
 
     }
 
-    public function nuevoComentario($idArticulo = 2)
+    public function nuevoComentario($id)
     {
+        $idArticulo['id'] = $id;
         $this->load->helper("form");
         $this->load->library('form_validation');
 
@@ -74,17 +75,20 @@ class Articulos extends CI_Controller
         $this->load->view("layout/navbar");
 
         if ($this->form_validation->run() == FALSE)
-            $this->load->view('nuevo_comentario_view');
+            $this->load->view('nuevo_comentario_view', $idArticulo);
         else
         {
             $this->load->model("comentarios_model");
             date_default_timezone_set("Europe/Madrid");
-            $data  =  array("idArticulo" => $idArticulo,
+            $data  =  array("idArticulo" => $id,
                             "idUsuario" => $_SESSION['id'],
                             "comentario" => $this->input->post('comentario'),
                             "titulo" => $this->input->post('titulo'),
                             "fecha" => date("Y/m/d"));
-            $this->comentarios_model->addComentario($data);
+            if($this->comentarios_model->addComentario($data))
+                $this->load->view("comentario_exito");
+            else
+                $this->load->view("comentario_fallo");
         }
         $this->load->view("layout/footer");
 
