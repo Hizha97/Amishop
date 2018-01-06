@@ -56,24 +56,27 @@ class Perfil extends CI_Controller
         if(!isset($_SESSION['isLoggedIn']))
             redirect(site_url('usuarios/login'));
 
+        $this->load->model("usuarios_model");
+
+        $data['tarjetas'] = $this->usuarios_model->getTarjetas($_SESSION['id']);
+
         $this->load->view("layout/header", array("title" => "Tarjetas"));
         $this->load->view("layout/navbar");
-        $this->load->view("perfil_tarjetas_view");
+        $this->load->view("perfil_tarjetas_view", $data);
         $this->load->view("layout/footer");
-
-
     }
 
     public function direcciones()
     {
         if(!isset($_SESSION['isLoggedIn']))
             redirect(site_url('usuarios/login'));
+        $this->load->model("usuarios_model");
+
+        $data['direcciones'] = $this->usuarios_model->getDirecciones($_SESSION['id']);
 
         $this->load->view("layout/header", array("title" => "Direcciones"));
         $this->load->view("layout/navbar");
-        $this->load->view("perfil_direcciones_view");
+        $this->load->view("perfil_direcciones_view", $data);
         $this->load->view("layout/footer");
-
-
     }
 }

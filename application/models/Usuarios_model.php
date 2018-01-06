@@ -78,6 +78,27 @@ class Usuarios_model extends CI_Model
             return false;
     }
 
+    public function getDirecciones($id)
+    {
 
+        $subqRes = $this->db->select('idDireccion')
+            ->from('usuarios_direcciones')
+            ->where('idUsuario =', $id)->get_compiled_select();
 
+        return $this->db->select('*')
+            ->from('direcciones')
+            ->where("id IN ($subqRes)", NULL)->get()->result_array();
+
+    }
+
+    public function getTarjetas($id)
+    {
+        $subqRes = $this->db->select('idTarjeta')
+            ->from('usuarios_tarjetas')
+            ->where('idUsuario =', $id)->get_compiled_select();
+
+        return $this->db->select('*')
+            ->from('tarjetas')
+            ->where("id IN ($subqRes)", NULL)->get()->result_array();
+    }
 }
