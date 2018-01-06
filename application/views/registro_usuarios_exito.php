@@ -8,6 +8,6 @@
 
 <script>
     window.setTimeout(function() {
-        window.location.href = '<?php echo base_url() ?>';
+        window.location.href = '<?php echo site_url('perfil') ?>';
     }, 3000);
 </script>
