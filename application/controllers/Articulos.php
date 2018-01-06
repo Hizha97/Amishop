@@ -52,15 +52,35 @@ class Articulos extends CI_Controller
         $data['comentarios'] = $this->comentarios_model->getComentarios($articulo->id)->result();
 
         $this->load->model("usuarios_model");
-        $data['usuarios'] = $this->comentarios_model->getComentarios($articulo->id)->result();
+        foreach ($data['comentarios'] as $item)
+        {
+            $arrayUsuarios[$item->idUsuario] = $this->usuarios_model->getDataWithId($item->idUsuario);
+        }
 
+        $data['usuarios'] = $arrayUsuarios;
+        $this->load->view("comentarios_view", $data);
 
-        $this->load->view("comentarios_view");
     }
 
-    public function nuevoComentario()
+    public function nuevoComentario($nombreArticulo)
     {
-        echo "holi";
+        $this->load->helper("form");
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('titulo', 'Titulo', 'required|min_length[2]|max_length[15]');
+        $this->form_validation->set_rules('comentario', 'Comentario', 'required|min_length[10]');
+
+        $this->load->view("layout/header", array("title" => "Nuevo Comentario"));
+        $this->load->view("layout/navbar");
+
+        if ($this->form_validation->run() == FALSE)
+            $this->load->view('nuevo_comentario_view');
+        else
+        {
+            $this->load->view("nuevo_comentario_view");
+        }
+        $this->load->view("layout/footer");
+
     }
 
     private function loadArticulos_model($amigurumi)
