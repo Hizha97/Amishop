@@ -104,6 +104,50 @@ class Perfil extends CI_Controller
         }
     }
 
+    public function anadirTarjeta()
+    {
+        if (!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
+        $this->load->helper("form");
+        $this->load->library('form_validation');
+        $this->load->model('tarjetas_model');
+
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required');
+        $this->form_validation->set_rules('numero', 'Numero', 'required');
+        $this->form_validation->set_rules('cvv', 'Codigo de seguridad', 'required');
+        $this->form_validation->set_rules('fechaCaducidad', 'Fecha de caducidad', 'required');
+        $this->form_validation->set_rules('marca', 'Marca', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view("layout/header", array("title" => "Añadir tarjeta"));
+            $this->load->view("layout/navbar");
+            $this->load->view("perfil_anadir_tarjeta_view");
+            $this->load->view("layout/footer");
+        } else {
+            $data = array(
+                "id" => $id,
+                "nombre" => $this->input->post('nombre'),
+                "numero" => $this->input->post('numero'),
+                "cvv" => $this->input->post('cvv'),
+                "fechaCaducidad" => $this->input->post('fechaCaducidad'),
+                "marca" => $this->input->post('marca')
+            );
+
+
+            if ($this->tarjetas_model->nuevaTarjeta($data)) {
+                $this->db->insert('usuarios_tarjetas', array("idTarjeta" => $this->db->insert_id(), "idUsuario" => $_SESSION['id']));
+                $this->session->set_flashdata('success', true);
+                redirect(site_url('perfil/tarjetas'));
+            } else {
+
+                $this->session->set_flashdata('error', true);
+                redirect(current_url());
+            }
+        }
+    }
+
     public function direcciones()
     {
         if (!isset($_SESSION['isLoggedIn']))

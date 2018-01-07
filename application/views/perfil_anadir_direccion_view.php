@@ -6,10 +6,10 @@
                     Mi perfil
                 </a>
                 <a href="<?php echo site_url('perfil/tarjetas') ?>"
-                   class="list-group-item list-group-item-action active">
+                   class="list-group-item list-group-item-action">
                     Tarjetas
                 </a>
-                <a href="<?php echo site_url('perfil/direcciones') ?>" class="list-group-item list-group-item-action">
+                <a href="<?php echo site_url('perfil/direcciones') ?>" class="list-group-item list-group-item-action active">
                     Direcciones
                 </a>
 
