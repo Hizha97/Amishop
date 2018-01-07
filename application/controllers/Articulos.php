@@ -50,8 +50,15 @@ class Articulos extends CI_Controller
     {
         $this->load->model("ratings_model");
         $data = array("idArticulo" => $id,
-                        "idUsuario" => $_SESSION['id'],
-                        "valoracion" => $this->input->post('valoracion'));
+                        "valoracion" => $this->input->post('valoracion'),
+                        "idUsuario" => $_SESSION['id']);
+        $this->load->view("layout/header", array("title" => "Nueva Valoracion"));
+        $this->load->view("layout/navbar");
+        if($this->ratings_model->addRatings($data))
+            $this->load->view("rating_exito");
+        else
+            $this->load->view("rating_fallo");
+        $this->load->view("layout/footer");
 
     }
 

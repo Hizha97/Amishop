@@ -11,31 +11,36 @@
             echo form_input(array("type" => "radio",
                                     "name" => "valoracion",
                                     "class" => "rating-input",
-                                    "id" => "rating-input-1-5"));
+                                    "id" => "rating-input-1-5",
+                                    "value" => 1));
             echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-5",array("class" => "rating-star"));
 
             echo form_input(array("type" => "radio",
-               "name" => "valoracion",
-               "class" => "rating-input",
-                                    "id" => "rating-input-1-4"));
+                                    "name" => "valoracion",
+                                    "class" => "rating-input",
+                                    "id" => "rating-input-1-4",
+                                    "value" => 2));
             echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-4",array("class" => "rating-star"));
 
             echo form_input(array("type" => "radio",
-                 "name" => "valoracion",
-                 "class" => "rating-input",
-                                    "id" => "rating-input-1-3"));
+                                    "name" => "valoracion",
+                                    "class" => "rating-input",
+                                    "id" => "rating-input-1-3",
+                                    "value" => 3));
             echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-3",array("class" => "rating-star"));
 
             echo form_input(array("type" => "radio",
-                 "name" => "valoracion",
-                 "class" => "rating-input",
-                                    "id" => "rating-input-1-2"));
+                                    "name" => "valoracion",
+                                    "class" => "rating-input",
+                                    "id" => "rating-input-1-2",
+                                    "value" => 4));
             echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-2",array("class" => "rating-star"));
 
             echo form_input(array("type" => "radio",
-                 "name" => "valoracion",
-                 "class" => "rating-input",
-                                    "id" => "rating-input-1-1"));
+                                    "name" => "valoracion",
+                                    "class" => "rating-input",
+                                    "id" => "rating-input-1-1",
+                                    "value" => 5));
             echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-1",array("class" => "rating-star"));
 
             echo form_submit(array( 'id' => 'submit',

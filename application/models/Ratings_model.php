@@ -19,6 +19,6 @@ class Ratings_model extends CI_Model
         $row = $query->row();
         if(isset($row))
             return false;
-        return $this->db->insert('comentarios', $data);
+        return $this->db->insert('valoraciones', $data);
     }
 }
