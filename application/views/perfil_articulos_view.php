@@ -25,4 +25,37 @@
                 ?>
             </div>
         </div>
+        <div class="col-12 col-lg-10 mt-5">
+            <h1>Articulos existentes.</h1>
+            <table class="table table-bordered table-responsive">
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($articulos as $articulo)
+                {
+                    echo "<tr>";
+                    echo "<td>" . $articulo['nombre'] . "</td>";
+                    echo "<td>" . $articulo['descripcion'] . "</td>";
+                    echo "<td class='text-center'>" . $articulo['stock'] . "</td>";
+                    echo "<td>" . $articulo['precio'] . "</td>";
+                    echo "<td></td>";
+                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('articulos/actualizar/'.$articulo['id']).'"> Editar <i class="fas fa-edit"></a></td>';
+                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('articulos/eliminar/'.$articulo['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
+                    echo "</tr>";
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

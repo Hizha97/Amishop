@@ -115,6 +115,13 @@ class Articulos extends CI_Controller
 
     }
 
+    public function eliminar($id)
+    {
+        $this->load->model('articulos_model');
+        $this->articulos_model->eliminarArticulo($id);
+        redirect(site_url('perfil/articulos'));
+    }
+
     private function loadArticulos_model($amigurumi)
     {
         $this->load->model("articulos_model");
