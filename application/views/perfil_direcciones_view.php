@@ -28,6 +28,13 @@
         </div>
     <div class="col-12 col-lg-10 mt-5">
         <h1>Tus direcciones</h1>
+        <?php
+            if (isset($_SESSION['error']))
+            echo '<span class="badge badge-danger">Error</span>';
+            if (isset($_SESSION['success']))
+            echo '<span class="badge badge-success">Cambios realizados correctamente.</span>';
+            ?>
+
         <table class="table table-responsive table-bordered">
             <thead class="">
             <tr>
@@ -50,7 +57,7 @@
                 foreach($direccion as $lab => $valor)
                     if($lab !== "id")
                         echo "<td class='text-center'>$valor</td>";
-                echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('direcciones/actualizar/'.$direccion['id']).'"> Editar <i class="fas fa-edit"></a></td>';
+                echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('perfil/modificarDireccion/'.$direccion['id']).'"> Editar <i class="fas fa-edit"></a></td>';
                 echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('direcciones/eliminar/'.$direccion['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
 
                 echo '</tr>';

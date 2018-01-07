@@ -13,7 +13,9 @@ class Usuarios_model extends CI_Model
         if(!isset($data['esAdministrador']))
             $data["esAdministrador"] = false;
         $data['contrasena'] = password_hash($data['contrasena'], PASSWORD_BCRYPT, array("cost" => 12));
-        return $this->db->insert('usuarios', $data);
+        $this->load->helper('security');
+
+        return $this->db->insert('usuarios', xss_clean(html_escape($data)));
     }
 
     public function actualizarUsuario($data)
@@ -22,6 +24,10 @@ class Usuarios_model extends CI_Model
             $data["esAdministrador"] = false;
         if(array_key_exists('contrasena', $data))
             $data['contrasena'] = password_hash($data['contrasena'], PASSWORD_BCRYPT, array("cost" => 12));
+
+        $this->load->helper('security');
+        $data = xss_clean(html_escape($data));
+
         return $this->db->set($data)
                     ->where('id =', $data['id'])
                     ->update('usuarios');
@@ -78,6 +84,11 @@ class Usuarios_model extends CI_Model
             return false;
     }
 
+    public function anadirDireccion($idUsuario, $data)
+    {
+        $this->load->model('direcciones_model');
+        $this->direcciones_model->nuevaDireccion($data);
+    }
     public function getDirecciones($id)
     {
 
