@@ -44,9 +44,19 @@
                                     "value" => 5));
             echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-1",array("class" => "rating-star"));
 
-            echo form_submit(array( 'id' => 'submit',
+            if(isset($_SESSION['id']))
+                echo form_submit(array( 'id' => 'submit',
                                     'value' => 'Enviar',
                                     'class' => 'btn btn-warning ml-3 mt-3'));
+            else
+            {
+                echo form_submit(array( 'id' => 'submit',
+                    'value' => 'Enviar',
+                    'class' => 'btn btn-danger ml-3 mt-3',
+                    'disabled' => ''));
+                echo '<p class="text-danger">Para valorar, inicia sesión</p>';
+            }
+
             echo form_close();
             echo '</span>';
 

@@ -79,4 +79,17 @@ class Perfil extends CI_Controller
         $this->load->view("perfil_direcciones_view", $data);
         $this->load->view("layout/footer");
     }
+
+    public function articulos()
+    {
+        $this->load->view("layout/header", array("title" => "Articulos"));
+        $this->load->view("layout/navbar");
+        $this->load->view("perfil_articulos_view");
+        $this->load->view("layout/footer");
+    }
+
+    public function usuarios()
+    {
+
+    }
 }
