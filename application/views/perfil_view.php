@@ -31,7 +31,7 @@
             <?php
 
             if(isset($_SESSION['error']))
-                echo '<span class="badge badge-error">Error</span>';
+                echo '<span class="badge badge-danger">Error</span>';
             if(isset($_SESSION['success']))
                 echo '<span class="badge badge-success">Cambios realizados correctamente.</span>';
 

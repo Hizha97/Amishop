@@ -28,6 +28,13 @@
         </div>
     <div class="col-12 col-lg-10 mt-5">
         <h1>Tus direcciones</h1>
+        <?php
+            if (isset($_SESSION['error']))
+            echo '<span class="badge badge-danger">Error</span>';
+            if (isset($_SESSION['success']))
+            echo '<span class="badge badge-success">Cambios realizados correctamente.</span>';
+            ?>
+
         <table class="table table-responsive table-bordered">
             <thead class="">
             <tr>
@@ -35,10 +42,12 @@
                 <th scope="col">Provincia</th>
                 <th scope="col">Ciudad</th>
                 <th scope="col">Código Postal</th>
+
                 <th scope="col">Numero</th>
                 <th scope="col">Escalera</th>
                 <th scope="col">Piso</th>
                 <th scope="col">Calle</th>
+
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
@@ -50,14 +59,19 @@
                 foreach($direccion as $lab => $valor)
                     if($lab !== "id")
                         echo "<td class='text-center'>$valor</td>";
-                echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('direcciones/actualizar/'.$direccion['id']).'"> Editar <i class="fas fa-edit"></a></td>';
+                echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('perfil/modificarDireccion/'.$direccion['id']).'"> Editar <i class="fas fa-edit"></a></td>';
                 echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('direcciones/eliminar/'.$direccion['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
 
                 echo '</tr>';
             }
             ?>
+
+
             </tbody>
         </table>
+        <?php
+        echo '<a class="btn btn-primary float-left" href="'. site_url('perfil/anadirDireccion'). '">Añadir direccion</a>';
+        ?>
     </div>
     </div>
 </div>

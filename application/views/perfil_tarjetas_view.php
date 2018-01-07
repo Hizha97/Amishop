@@ -28,6 +28,15 @@
         </div>
         <div class="col-12 col-lg-10 mt-5">
             <h1>Tus tarjetas</h1>
+
+            <?php
+
+            if(isset($_SESSION['error']))
+                echo '<span class="badge badge-danger">Error</span>';
+            if(isset($_SESSION['success']))
+                echo '<span class="badge badge-success">Cambios realizados correctamente.</span>';
+
+            ?>
             <table class="table table-responsive table-bordered">
                 <thead class="">
                 <tr>
@@ -47,7 +56,7 @@
                     foreach($tarjeta as $lab => $valor)
                         if($lab !== "id")
                             echo "<td class='text-center'>$valor</td>";
-                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('tarjetas/actualizar/'.$tarjeta['id']).'"> Editar <i class="fas fa-edit"></a></td>';
+                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('perfil/modificarTarjeta/'.$tarjeta['id']).'"> Editar <i class="fas fa-edit"></a></td>';
                     echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('tarjetas/eliminar/'.$tarjeta['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
 
                     echo '</tr>';
@@ -55,7 +64,13 @@
                 ?>
                 </tbody>
             </table>
+
+            <?php
+            echo '<a class="btn btn-primary float-left" href="'. site_url('perfil/anadirTarjeta'). '">Añadir tarjeta</a>';
+            ?>
         </div>
+
+
     </div>
 </div>
 
