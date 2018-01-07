@@ -168,6 +168,9 @@ class Perfil extends CI_Controller
 
     public function articulos()
     {
+        if(!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
         $this->load->view("layout/header", array("title" => "Articulos"));
         $this->load->view("layout/navbar");
         $this->load->view("perfil_articulos_view");
@@ -176,6 +179,15 @@ class Perfil extends CI_Controller
 
     public function usuarios()
     {
+        if(!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
 
+        $this->load->model("usuarios_model");
+        $data['usuarios'] = $this->usuarios_model->getAllUsuarios()->result_array();
+
+        $this->load->view("layout/header", array("title" => "Articulos"));
+        $this->load->view("layout/navbar");
+        $this->load->view("perfil_usuarios_view", $data);
+        $this->load->view("layout/footer");
     }
 }

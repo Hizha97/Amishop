@@ -8,12 +8,11 @@
 
 class Carrito extends CI_Controller
 {
-    public function index()
+    public function mostarCarrito()
     {
-
         $this->load->view("layout/header", array("title" => "Carrito"));
         $this->load->view("layout/navbar");
-
+        $this->load->view("carrito_view");
         $this->load->view("layout/footer");
     }
 }
