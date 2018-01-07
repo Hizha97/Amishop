@@ -117,6 +117,12 @@ class Usuarios extends CI_Controller
         redirect(base_url());
     }
 
+    function eliminar($id)
+    {
+        $this->load->model('usuarios_model');
+        $this->usuarios_model->eliminarUsuario($id);
+    }
+
 
     function perfil(){
 

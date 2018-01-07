@@ -78,6 +78,12 @@ class Usuarios_model extends CI_Model
             return false;
     }
 
+    public function getAllUsuarios()
+    {
+        $query = $this->db->get('usuarios');
+        return $query;
+    }
+
     public function getDirecciones($id)
     {
 
@@ -100,5 +106,10 @@ class Usuarios_model extends CI_Model
         return $this->db->select('*')
             ->from('tarjetas')
             ->where("id IN ($subqRes)", NULL)->get()->result_array();
+    }
+
+    public function eliminarUsuario($id)
+    {
+       $this->db->delete('usuarios', array('id' => $id));
     }
 }
