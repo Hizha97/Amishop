@@ -1,13 +1,14 @@
     <div class="row mt-3">
         <?php
             $media = 0; $cuenta = 0;
+            $articulo = $articulos[0];
             foreach ($valoraciones as $valoracion)
             {
                 $media += $valoracion->valoracion;
                 $cuenta++;
             }
             echo '<span class="rating">';
-            echo form_open(base_url() . 'articulos/nuevaValoracion/' . $articulos[0]->id);
+            echo form_open(base_url() . 'articulos/nuevaValoracion/' . $articulo['id']);
             echo form_input(array("type" => "radio",
                                     "name" => "valoracion",
                                     "class" => "rating-input",

@@ -11,7 +11,7 @@ class Articulos extends CI_Controller
     public function index()
     {
         $this->load->model("articulos_model");
-        $data['articulos'] = $this->articulos_model->getArticulos()->result();
+        $data['articulos'] = $this->articulos_model->getArticulos()->result_array();
 
         $this->load->view("layout/header", array("title" => "Amishop"));
         $this->load->view("layout/navbar");
@@ -41,7 +41,7 @@ class Articulos extends CI_Controller
         $articulo = $articulos[0];
 
         $this->load->model("ratings_model");
-        $data['valoraciones'] = $this->ratings_model->getRatings($articulo->id)->result();
+        $data['valoraciones'] = $this->ratings_model->getRatings($articulo['id'])->result();
 
         $this->load->view("ratings_view", $data);
     }
@@ -69,15 +69,16 @@ class Articulos extends CI_Controller
         $articulo = $articulos[0];
 
         $this->load->model("comentarios_model");
-        $data['comentarios'] = $this->comentarios_model->getComentarios($articulo->id)->result();
+        $data['comentarios'] = $this->comentarios_model->getComentarios($articulo['id'])->result_array();
 
         $this->load->model("usuarios_model");
         foreach ($data['comentarios'] as $item)
         {
-            $arrayUsuarios[$item->idUsuario] = $this->usuarios_model->getDataWithId($item->idUsuario);
+            $arrayUsuarios[$item['idUsuario']] = $this->usuarios_model->getDataWithId($item['idUsuario']);
         }
         if(isset($arrayUsuarios))
             $data['usuarios'] = $arrayUsuarios;
+        $data = $this->security->xss_clean($data);
         $this->load->view("comentarios_view", $data);
 
     }
@@ -117,7 +118,7 @@ class Articulos extends CI_Controller
     private function loadArticulos_model($amigurumi)
     {
         $this->load->model("articulos_model");
-        $data['articulos'] = $this->articulos_model->getArticulo($amigurumi)->result();
+        $data['articulos'] = $this->articulos_model->getArticulo($amigurumi)->result_array();
 
         return $data;
     }

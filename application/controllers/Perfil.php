@@ -11,7 +11,7 @@ class Perfil extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model("usuarios_model");
 
-        $this->form_validation->set_rules('nombre', 'Nombre', 'required');
+        $this->form_validation->set_rules('nombre', 'Nxss_clean($data);ombre', 'required');
         $this->form_validation->set_rules('apellidos', 'Apellidos', 'required');
         $this->form_validation->set_rules('email', 'Correo electronico', 'required');
         $this->form_validation->set_rules('nombreUsuario', 'Nombre de usuario', 'required');

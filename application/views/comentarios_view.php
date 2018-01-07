@@ -4,8 +4,9 @@
         <div class="row justify-content-center mb-3">
             <div class="col-sm-3 col-12">
                 <?php
+                $articulo = $articulos[0];
                 if(isset($_SESSION['isLoggedIn']))
-                    echo sprintf('<a class="btn btn-secondary" href="'. site_url('articulos/nuevoComentario/%s'). '">Dejar un comentario</a>',$articulos[0]->id);
+                    echo sprintf('<a class="btn btn-secondary" href="'. site_url('articulos/nuevoComentario/%s'). '">Dejar un comentario</a>',$articulo['id']);
                 else
                 {
                     echo '<a class="btn btn-danger disabled" href="'. site_url('articulos/nuevoComentario'). '">Dejar un comentario</a>';
@@ -22,13 +23,13 @@
         foreach ($comentarios as $comentario)
         {
             echo '<tr class="table-light">';
-            echo "<th scope='row'> <p class='text-success'> $comentario->titulo </p>";
-            echo "<p class='text-muted'> <h6>$comentario->fecha</h6></p>";
-            $id = $comentario->idUsuario;
+            echo "<th scope='row'> <p class='text-success'>". $comentario['titulo'] ." </p>";
+            echo "<p class='text-muted'> <h6>" . $comentario['fecha'] . "</h6></p>";
+            $id = $comentario['idUsuario'];
             $nombre = $usuarios[$id]['nombreUsuario'];
             echo "<p> <h3> $nombre </h3></p>";
             echo "</th>";
-            echo "<td>$comentario->comentario</td>";
+            echo "<td>".$comentario['comentario']. "</td>";
             echo  '</tr></tbody>';
         }
     ?>
