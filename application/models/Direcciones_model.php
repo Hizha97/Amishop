@@ -32,4 +32,11 @@ class Direcciones_model extends CI_Model
             ->where('id =', $data['id'])
             ->update('direcciones');
     }
+
+    public function nuevaDireccion($data)
+    {
+        $this->load->helper('security');
+
+        return $this->db->insert('direcciones', xss_clean(html_escape($data)));
+    }
 }

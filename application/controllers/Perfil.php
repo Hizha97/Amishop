@@ -161,8 +161,52 @@ class Perfil extends CI_Controller
                 $this->session->set_flashdata('error', true);
                 redirect(current_url());
             }
+        }
+    }
+
+    public function anadirDireccion()
+    {
+        if (!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
+        $this->load->helper("form");
+        $this->load->library('form_validation');
+        $this->load->model('direcciones_model');
+
+        $this->form_validation->set_rules('pais', 'País', 'required');
+        $this->form_validation->set_rules('provincia', 'Provincia', 'required');
+        $this->form_validation->set_rules('ciudad', 'Ciudad', 'required');
+        $this->form_validation->set_rules('codigoPostal', 'Codigo Postal', 'required');
+        $this->form_validation->set_rules('numero', 'Numero', 'required');
+        $this->form_validation->set_rules('calle', 'Calle', 'required');
 
 
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view("layout/header", array("title" => "Añadir direccion"));
+            $this->load->view("layout/navbar");
+            $this->load->view("perfil_anadir_direccion_view");
+            $this->load->view("layout/footer");
+        } else {
+            $data = array(
+                "pais" => $this->input->post('pais'),
+                "provincia" => $this->input->post('provincia'),
+                "ciudad" => $this->input->post('ciudad'),
+                "codigoPostal" => $this->input->post('codigoPostal'),
+                "numero" => $this->input->post('numero'),
+                "calle" => $this->input->post('calle'),
+                "escalera" => $this->input->post('escalera')
+            );
+
+
+            if ($this->direcciones_model->nuevaDireccion($data)) {
+                $this->db->insert('usuarios_direcciones', array("idDireccion" => $this->db->insert_id(), "idUsuario" => $_SESSION['id']));
+                $this->session->set_flashdata('success', true);
+                redirect(site_url('perfil/direcciones'));
+            } else {
+
+                $this->session->set_flashdata('error', true);
+                redirect(current_url());
+            }
         }
     }
 

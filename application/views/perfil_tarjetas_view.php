@@ -64,7 +64,13 @@
                 ?>
                 </tbody>
             </table>
+
+            <?php
+            echo '<a class="btn btn-primary float-left" href="'. site_url('perfil/anadirTarjeta'). '">Añadir tarjeta</a>';
+            ?>
         </div>
+
+
     </div>
 </div>
 

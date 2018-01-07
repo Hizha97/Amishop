@@ -32,4 +32,11 @@ class Tarjetas_model extends CI_Model
             ->where('id =', $data['id'])
             ->update('tarjetas');
     }
+
+    public function nuevaTarjeta($data)
+    {
+        $this->load->helper('security');
+
+        return $this->db->insert('tarjetas', xss_clean(html_escape($data)));
+    }
 }

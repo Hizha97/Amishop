@@ -42,10 +42,12 @@
                 <th scope="col">Provincia</th>
                 <th scope="col">Ciudad</th>
                 <th scope="col">Código Postal</th>
+
                 <th scope="col">Numero</th>
                 <th scope="col">Escalera</th>
                 <th scope="col">Piso</th>
                 <th scope="col">Calle</th>
+
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
@@ -63,8 +65,13 @@
                 echo '</tr>';
             }
             ?>
+
+
             </tbody>
         </table>
+        <?php
+        echo '<a class="btn btn-primary float-left" href="'. site_url('perfil/anadirDireccion'). '">Añadir direccion</a>';
+        ?>
     </div>
     </div>
 </div>
