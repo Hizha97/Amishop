@@ -22,4 +22,9 @@ class Comentarios_model extends CI_Model
             return false;
         return $this->db->insert('comentarios', $data);
     }
+
+    public function eliminarComentario($id)
+    {
+        $this->db->delete('comentarios', array('idUsuario' => $id));
+    }
 }

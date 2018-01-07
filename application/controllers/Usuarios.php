@@ -120,7 +120,14 @@ class Usuarios extends CI_Controller
     function eliminar($id)
     {
         $this->load->model('usuarios_model');
+        $this->load->model('comentarios_model');
+        $this->load->model('ratings_model');
+
+        $this->comentarios_model->eliminarComentario($id);
+        $this->ratings_model->eliminarRating($id);
         $this->usuarios_model->eliminarUsuario($id);
+
+        $this->load->view("perfil_usuarios_view");
     }
 
 

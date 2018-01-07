@@ -21,4 +21,9 @@ class Ratings_model extends CI_Model
             return false;
         return $this->db->insert('valoraciones', $data);
     }
+
+    public function eliminarRating($id)
+    {
+        $this->db->delete('valoraciones', array('idUsuario' => $id));
+    }
 }
