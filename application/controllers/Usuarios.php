@@ -124,6 +124,51 @@ class Usuarios extends CI_Controller
         redirect(site_url('perfil/usuarios'));
     }
 
+    function actualizar($id)
+    {
+        $this->load->helper("form");
+        $this->load->library('form_validation');
+        $this->load->model("usuarios_model");
+
+        $this->form_validation->set_rules('nombre', 'Nxss_clean($data);ombre', 'required');
+        $this->form_validation->set_rules('apellidos', 'Apellidos', 'required');
+        $this->form_validation->set_rules('email', 'Correo electronico', 'required');
+        $this->form_validation->set_rules('nombreUsuario', 'Nombre de usuario', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['usuario'] = $this->usuarios_model->getDataWithId($id);
+            $data['usuario']['id'] = $id;
+            $this->load->view("layout/header", array("title" => "Mi perfil"));
+            $this->load->view("layout/navbar");
+            $this->load->view("modificar_usuario", $data);
+        }
+        else
+        {
+            $data = array(
+                "id" => $id,
+                "nombre" => $this->input->post('nombre'),
+                "apellidos" => $this->input->post('apellidos'),
+                "email" => $this->input->post('email'),
+                "nombreUsuario" => $this->input->post('nombreUsuario')
+            );
+
+            if($this->input->post('contrasena') != null)
+                $data["contrasena"] = $this->input->post('contrasena');
+            if($this->input->post('esAdministrador') != null)
+                $data["esAdministrador"] = $this->input->post('esAdministrador');
+
+            $this->load->view("layout/header", array("title" => "Modificar Usuario"));
+            $this->load->view("layout/navbar");
+            if($this->usuarios_model->actualizarUsuario($data))
+                $this->session->set_flashdata('success', true);
+            else
+                $this->session->set_flashdata('error', true);
+
+            redirect(site_url('perfil/usuarios'));
+        }
+    }
+
 
     function perfil(){
 
