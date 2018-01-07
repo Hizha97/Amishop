@@ -13,4 +13,12 @@ class Ratings_model extends CI_Model
         $query = $this->db->get_where('valoraciones', array("idArticulo" => $id));
         return $query;
     }
+    public function addRatings($data)
+    {
+        $query = $this->db->get_where('valoraciones',array("idArticulo" => $data['idArticulo'], "idUsuario" => $data['idUsuario']));
+        $row = $query->row();
+        if(isset($row))
+            return false;
+        return $this->db->insert('comentarios', $data);
+    }
 }

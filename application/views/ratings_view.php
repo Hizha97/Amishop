@@ -6,15 +6,43 @@
                 $media += $valoracion->valoracion;
                 $cuenta++;
             }
-            $media = intdiv($media,$cuenta);
+            echo '<span class="rating">';
             echo form_open(base_url() . 'articulos/nuevaValoracion/' . $articulos[0]->id);
-            echo form_input(array("type" => "radio", "name" => "valoracion"));
-            echo form_input(array("type" => "radio", "name" => "valoracion"));
-            echo form_input(array("type" => "radio", "name" => "valoracion"));
-            echo form_input(array("type" => "radio", "name" => "valoracion"));
-            echo form_input(array("type" => "radio", "name" => "valoracion"));
-            echo form_submit(array('id' => 'submit', 'value' => 'Enviar', 'class' => 'btn btn-warning ml-3 mt-3'));
+            echo form_input(array("type" => "radio",
+                                    "name" => "valoracion",
+                                    "class" => "rating-input",
+                                    "id" => "rating-input-1-5"));
+            echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-5",array("class" => "rating-star"));
+
+            echo form_input(array("type" => "radio",
+               "name" => "valoracion",
+               "class" => "rating-input",
+                                    "id" => "rating-input-1-4"));
+            echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-4",array("class" => "rating-star"));
+
+            echo form_input(array("type" => "radio",
+                 "name" => "valoracion",
+                 "class" => "rating-input",
+                                    "id" => "rating-input-1-3"));
+            echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-3",array("class" => "rating-star"));
+
+            echo form_input(array("type" => "radio",
+                 "name" => "valoracion",
+                 "class" => "rating-input",
+                                    "id" => "rating-input-1-2"));
+            echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-2",array("class" => "rating-star"));
+
+            echo form_input(array("type" => "radio",
+                 "name" => "valoracion",
+                 "class" => "rating-input",
+                                    "id" => "rating-input-1-1"));
+            echo form_label("<i class=\"fas fa-star\"></i>","rating-input-1-1",array("class" => "rating-star"));
+
+            echo form_submit(array( 'id' => 'submit',
+                                    'value' => 'Enviar',
+                                    'class' => 'btn btn-warning ml-3 mt-3'));
             echo form_close();
+            echo '</span>';
 
         ?>
     </div>

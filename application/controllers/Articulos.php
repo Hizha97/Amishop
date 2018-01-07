@@ -46,6 +46,15 @@ class Articulos extends CI_Controller
         $this->load->view("ratings_view", $data);
     }
 
+    public function nuevaValoracion($id)
+    {
+        $this->load->model("ratings_model");
+        $data = array("idArticulo" => $id,
+                        "idUsuario" => $_SESSION['id'],
+                        "valoracion" => $this->input->post('valoracion'));
+
+    }
+
     public function comentarios($amigurumi)
     {
         $data = $this->loadArticulos_model($amigurumi);
