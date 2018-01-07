@@ -19,4 +19,9 @@ class Articulos_model extends CI_Model
         $query = $this->db->get_where('articulos', array("nombre" => $articulo));
         return $query;
     }
+
+    public function eliminarArticulo($id)
+    {
+        $this->db->delete('articulos', array('id' => $id));
+    }
 }

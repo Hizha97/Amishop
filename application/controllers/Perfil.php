@@ -90,7 +90,7 @@ class Perfil extends CI_Controller
 
         $this->load->view("layout/header", array("title" => "Articulos"));
         $this->load->view("layout/navbar");
-        $this->load->view("perfil_articulos_view");
+        $this->load->view("perfil_articulos_view",$data);
         $this->load->view("layout/footer");
     }
 

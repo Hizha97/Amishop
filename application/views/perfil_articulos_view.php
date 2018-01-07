@@ -44,10 +44,13 @@
                 foreach ($articulos as $articulo)
                 {
                     echo "<tr>";
-                    echo "<td>" . $usuario['nombreUsuario'] . "</td>";
-                    echo "<td>" . $usuario['email'] . "</td>";
-                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('usuarios/actualizar/'.$usuario['id']).'"> Editar <i class="fas fa-edit"></a></td>';
-                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('usuarios/eliminar/'.$usuario['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
+                    echo "<td>" . $articulo['nombre'] . "</td>";
+                    echo "<td>" . $articulo['descripcion'] . "</td>";
+                    echo "<td class='text-center'>" . $articulo['stock'] . "</td>";
+                    echo "<td>" . $articulo['precio'] . "</td>";
+                    echo "<td></td>";
+                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('articulos/actualizar/'.$articulo['id']).'"> Editar <i class="fas fa-edit"></a></td>';
+                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('articulos/eliminar/'.$articulo['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
                     echo "</tr>";
                 }
                 ?>
