@@ -34,6 +34,7 @@ class Carrito extends CI_Controller
         $this->load->view("layout/header", array("title" => "Carrito"));
         $this->load->view("layout/navbar");
         $this->load->view("carrito_view", $data);
+        $this->formularioTarjetasDirecciones();
         $this->load->view("layout/footer");
     }
 
@@ -42,6 +43,11 @@ class Carrito extends CI_Controller
         $this->load->model("carrito_model");
         $this->carrito_model->anadirArticuloCarrito($idArticulo);
         redirect(site_url('carrito'));
+
+    }
+
+    public function formularioTarjetasDirecciones()
+    {
 
     }
 }

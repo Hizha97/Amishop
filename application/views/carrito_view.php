@@ -14,18 +14,21 @@
                 </thead>
                 <tbody>
             <?php
+            $total = 0;
             foreach ($carritos as $carrito)
             {
                 echo '<tr>';
-                echo '<td class="justify-content-center"> <img height="200" width="200" src="/Amishop/uploads/'. $articulos[$carrito['idArticulo']]['imagen'] . '"></td>';
+                echo '<td class="justify-content-center"> <img height="200" width="200" src="./uploads/'. $articulos[$carrito['idArticulo']]['imagen'] . '"></td>';
                 echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['nombre'] . '</td>';
                 echo '<td class="text-center">'. $carrito['cantidad'] . '</td>';
                 echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['precio'] . '€</td>';
                 echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['precio'] * $carrito['cantidad'] . '€</td>';
                 echo '</tr>';
+                $total += $articulos[$carrito['idArticulo']]['precio'] * $carrito['cantidad'];
             }
             ?>
                 </tbody>
         </table>
+    </div>
     </div>
 </div>
