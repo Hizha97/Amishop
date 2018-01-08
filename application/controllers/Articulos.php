@@ -48,6 +48,9 @@ class Articulos extends CI_Controller
 
     public function nuevaValoracion($id)
     {
+        if (!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
         $this->load->model("ratings_model");
         $data = array("idArticulo" => $id,
                         "valoracion" => $this->input->post('valoracion'),
@@ -85,6 +88,9 @@ class Articulos extends CI_Controller
 
     public function nuevoComentario($id)
     {
+        if (!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
         $idArticulo['id'] = $id;
         $this->load->helper("form");
         $this->load->library('form_validation');
@@ -117,6 +123,9 @@ class Articulos extends CI_Controller
 
     public function eliminar($id)
     {
+        if(!isset($_SESSION['isLoggedIn']) and $_SESSION['esAdministrador'])
+            redirect(site_url('usuarios/login'));
+
         $this->load->model('articulos_model');
         $this->articulos_model->eliminarArticulo($id);
         redirect(site_url('perfil/articulos'));
@@ -124,6 +133,9 @@ class Articulos extends CI_Controller
 
     public function actualizar($id)
     {
+        if(!isset($_SESSION['isLoggedIn']) and $_SESSION['esAdministrador'])
+            redirect(site_url('usuarios/login'));
+
         $this->load->helper("form");
         $this->load->library('form_validation');
         $this->load->model("articulos_model");
@@ -170,12 +182,15 @@ class Articulos extends CI_Controller
 
     public function nuevoArticulo()
     {
+        if(!isset($_SESSION['isLoggedIn']) and $_SESSION['esAdministrador'])
+            redirect(site_url('usuarios/login'));
+
         $this->load->library('form_validation');
         $this->load->helper("form");
 
         $this->load->model("articulos_model");
 
-        $this->form_validation->set_rules('nombre', 'Nxss_clean($data);ombre', 'required');
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required');
         $this->form_validation->set_rules('descripcion', 'Descripción', 'required');
         $this->form_validation->set_rules('precio', 'precio', 'required');
         $this->form_validation->set_rules('stock', 'Stock', 'required');

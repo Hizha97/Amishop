@@ -256,7 +256,7 @@ class Perfil extends CI_Controller
 
     public function articulos()
     {
-        if(!isset($_SESSION['isLoggedIn']))
+        if(!isset($_SESSION['isLoggedIn']) and $_SESSION['esAdministrador'])
             redirect(site_url('usuarios/login'));
 
         $this->load->model("articulos_model");
@@ -270,7 +270,7 @@ class Perfil extends CI_Controller
 
     public function usuarios()
     {
-        if(!isset($_SESSION['isLoggedIn']))
+        if(!isset($_SESSION['isLoggedIn']) and $_SESSION['esAdministrador'])
             redirect(site_url('usuarios/login'));
 
         $this->load->model("usuarios_model");
