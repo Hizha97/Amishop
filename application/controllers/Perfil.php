@@ -300,4 +300,46 @@ class Perfil extends CI_Controller
         $this->load->view("perfil_pedidos_view", $data);
         $this->load->view("layout/footer");
     }
+
+    public function estado_check($state)
+    {
+        $this->form_validation->set_message('estado_check', 'The {field} field has to be one of the options.');
+
+        return in_array($state, array("Sin tramitar",
+                                      "En tramite", "Enviado", "Finalizado"));
+    }
+    public function modificarPedido($id)
+    {
+        if (!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
+        $this->load->helper("form");
+        $this->load->library('form_validation');
+        $this->load->model('pedidos_model');
+
+        $this->form_validation->set_rules('estado', 'Estado', 'callback_estado_check');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['datos'] = $this->pedidos_model->getPedido($id);
+            $this->load->view("layout/header", array("title" => "Modificar pedido"));
+            $this->load->view("layout/navbar");
+            $this->load->view("perfil_modificar_pedido_view", $data);
+            $this->load->view("layout/footer");
+        } else {
+            $data = array(
+                "id" => $id,
+                "estado" => $this->input->post('estado'),
+                "fechaEntrega" => $this->input->post('fechaEntrega')
+            );
+
+            if ($this->pedidos_model->actualizarPedido($data)) {
+                $this->session->set_flashdata('success', true);
+                redirect(site_url('perfil/pedidos'));
+            } else {
+
+                $this->session->set_flashdata('error', true);
+                redirect(current_url());
+            }
+        }
+    }
 }

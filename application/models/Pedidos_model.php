@@ -22,4 +22,31 @@ class Pedidos_model extends CI_Model
     {
         return $this->db->insert('pedidos', $data);
     }
+
+    public function getPedido($id)
+    {
+
+        $this->db->select('*')
+            ->from('pedidos')
+            ->where('id =', $id);
+
+        $query = $this->db->get();
+        $row = $query->row_array();
+        if(isset($row))
+            return $row;
+        else
+            return false;
+    }
+
+    public function actualizarPedido($data)
+    {
+        $this->load->helper('security');
+        $data = xss_clean(html_escape($data));
+
+        return $this->db->set($data)
+            ->where('id =', $data['id'])
+            ->update('pedidos');
+    }
+
+
 }
