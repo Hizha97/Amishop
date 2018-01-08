@@ -17,7 +17,7 @@
         {
             echo '<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">';
             echo '<div class="card border-secondary mb-3">';
-            echo sprintf('<div class="card-header"> <a href="'. site_url('articulos/articulo/%s').'"> %s</a> </div>', $articulo['nombre'], $articulo['nombre'] );
+            echo sprintf('<div class="card-header"> <a href="'. site_url('articulos/articulo/%s').'"> %s</a> </div>', $articulo['id'], $articulo['nombre'] );
             echo '<img class="img-thumbnail" src="' . site_url(sprintf("uploads/%s", $articulo['imagen'])) . '">';
             echo '<div class="card-body text-secondary">';
             echo "<h4 class='card-title'>" . $articulo['precio'] . "€ </h4>";

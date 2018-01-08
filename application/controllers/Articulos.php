@@ -20,23 +20,23 @@ class Articulos extends CI_Controller
 
     }
 
-    public function articulo($amigurumi)
+    public function articulo($id)
     {
-        $data = $this->loadArticulos_model($amigurumi);
+        $data = $this->loadArticulos_model($id);
 
-        $this->load->view("layout/header", array("title" => $amigurumi));
+        $this->load->view("layout/header", array("title" => $data['articulos'][0]['nombre']));
         $this->load->view("layout/navbar");
         $this->load->view("articulo_view", $data);
-        $this->ratings($amigurumi);
-        $this->comentarios($amigurumi);
+        $this->ratings($id);
+        $this->comentarios($id);
         $this->load->view("layout/footer");
     }
 
-    public function ratings($amigurumi)
+    public function ratings($id)
     {
         $this->load->helper("form");
 
-        $data = $this->loadArticulos_model($amigurumi);
+        $data = $this->loadArticulos_model($id);
         $articulos = $data['articulos'];
         $articulo = $articulos[0];
 
@@ -65,9 +65,9 @@ class Articulos extends CI_Controller
 
     }
 
-    public function comentarios($amigurumi)
+    public function comentarios($id)
     {
-        $data = $this->loadArticulos_model($amigurumi);
+        $data = $this->loadArticulos_model($id);
         $articulos = $data['articulos'];
         $articulo = $articulos[0];
 
@@ -228,10 +228,10 @@ class Articulos extends CI_Controller
         $this->load->view("layout/footer");
     }
 
-    private function loadArticulos_model($amigurumi)
+    private function loadArticulos_model($id)
     {
         $this->load->model("articulos_model");
-        $data['articulos'] = $this->articulos_model->getArticulo($amigurumi)->result_array();
+        $data['articulos'] = $this->articulos_model->getArticuloWithId($id)->result_array();
 
         return $data;
     }
