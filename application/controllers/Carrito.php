@@ -56,10 +56,24 @@ class Carrito extends CI_Controller
         foreach ($data['carritos'] as $item)
         {
             $articulos = $this->articulos_model->getArticuloWithId($item['idArticulo'])->result_array();
-            if($data['carritos'] > $articulos[0]['stock'])
+            if($item['cantidad'] > $articulos[0]['stock'])
                 return false;
         }
         return true;
     }
 
+    public function eliminar($idLineaDeCompra)
+    {
+        if (!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
+        $this->load->model("carrito_model");
+        $this->load->view("layout/header", array("title" => "ELiminar del carrito"));
+        $this->load->view("layout/navbar");
+        $this->carrito_model->eliminarLineaDeCompra($idLineaDeCompra);
+        redirect(site_url('carrito'));
+
+        $this->load->view("layout/footer");
+
+    }
 }
