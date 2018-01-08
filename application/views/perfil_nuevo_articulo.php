@@ -29,7 +29,7 @@
         <div class="col-12 col-lg-10 mt-5">
             <h1>Añadir artículo.</h1>
             <?php
-            echo form_open('articulos/nuevoArticulo');
+            echo form_open_multipart('articulos/nuevoArticulo');
             echo '<fieldset>';
             echo '<div class="form-group row">';
             echo '<label for="staticNombre" class="col-12 col-form-label">Nombre</label>';
@@ -56,18 +56,12 @@
             echo '<input type="text" name="stock" class="form-control" id="stock">';
             echo '</div>';
             echo '</div>';
-            $fotos = scandir("uploads");
-            echo '<label for="imagen">Selecciona una imagen o sube una nueva</label>';
-            echo '<select class="form-control" id="imagen" name="imagen">';
-            var_dump($fotos);
-            foreach ($fotos as $foto)
-            {
-                echo "<option value=$foto>";
-                echo $foto;
-                echo '</option>';
-            }
-            echo '</select>';
-            echo ' <a href="'. site_url("articulos/foto") .'"><button type="button" class="btn btn-info mt-2">Nueva foto</button></a>';
+
+            echo '<div class="form-group row">';
+            echo '<label for="imagen" class="col-12 col-form-label">Imagen(dejar en blanco si no desea modificar la foto)</label>';
+            echo '<input type="file" class="col-12 form-control-file" name="userfile" id="imagen">';
+            echo '</div>';
+
             echo '<button class="btn float-right btn-primary col-12 mt-2" type="submit">NUEVO ARTICULO</button>';
             echo '</fieldset>';
             echo form_close();

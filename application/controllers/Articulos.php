@@ -188,13 +188,26 @@ class Articulos extends CI_Controller
         }
         else
         {
-            $data = array("nombre" => $this->input->post('nombre'),
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            // Hay que hacer writable el directorio para que funcione.
+            if(!$this->upload->do_upload('userfile'))
+            {
+                echo $this->upload->display_errors();
+            }
+
+            $data = array("id" => $id,
+                "nombre" => $this->input->post('nombre'),
                 "descripcion" => $this->input->post('descripcion'),
                 "precio" => $this->input->post('precio'),
                 "stock" => $this->input->post('stock'),
-                "imagen" => $this->input->post("imagen"));
+                "imagen" => $this->upload->data('file_name'));
+
 
             $this->articulos_model->nuevoArticulo($data);
+
             redirect(site_url('perfil/articulos'));
         }
         $this->load->view("layout/footer");
@@ -208,5 +221,5 @@ class Articulos extends CI_Controller
         return $data;
     }
 
- 
+
 }
