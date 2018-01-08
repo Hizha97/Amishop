@@ -80,4 +80,25 @@ class Pedidos extends CI_Controller
 
         $this->load->view("layout/footer");
     }
+
+    public function ver($idPedido)
+    {
+        if(!isset($_SESSION['isLoggedIn']) and $_SESSION['esAdministrador'])
+            redirect(site_url('usuarios/login'));
+
+        $this->load->model("pedidos_model");
+        $this->load->model("usuarios_model");
+        $this->load->model("direcciones_model");
+        $this->load->model("tarjetas_model");
+
+        $data['datosPedido'] = $this->pedidos_model->getPedido($idPedido);
+        $data['usuario'] = $this->usuarios_model->getDataWithId($data['datosPedido']['idUsuario']);
+        $data['direccion'] = $this->direcciones_model->getDireccion($data['datosPedido']['idDireccion']);
+        $data['tarjeta'] = $this->tarjetas_model->getTarjeta($data['datosPedido']['idTarjeta']);
+
+        $this->load->view("layout/header", array("title" => "Detalle Pedido"));
+        $this->load->view("layout/navbar");
+        $this->load->view("perfil_detalle_pedido", $data);
+        $this->load->view("layout/footer");
+    }
 }
