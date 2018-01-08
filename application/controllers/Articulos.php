@@ -217,7 +217,7 @@ class Articulos extends CI_Controller
         $this->upload->initialize($config);
         if($this->upload->do_upload('userfile'))
         {
-            return $nombre = $this->upload->data('file_name');
+            redirect(site_url('perfil/articulos'));
         }
 
     }
