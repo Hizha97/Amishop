@@ -4,7 +4,9 @@
     <br>
     <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-            <?php echo sprintf('<img class="img-fluid" alt="Responsive image" src="./uploads/%s">', $articulo['imagen']);?>
+            <?php
+            echo '<img class="img-fluid" alt="Responsive image" src="' .site_url(sprintf("uploads/%s", $articulo['imagen'])) . '">';
+            ?>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="media">

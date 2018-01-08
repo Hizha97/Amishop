@@ -128,7 +128,7 @@ class Articulos extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model("articulos_model");
 
-        $this->form_validation->set_rules('nombre', 'Nxss_clean($data);ombre', 'required');
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required');
         $this->form_validation->set_rules('descripcion', 'Descripción', 'required');
         $this->form_validation->set_rules('precio', 'precio', 'required');
         $this->form_validation->set_rules('stock', 'Stock', 'required');
@@ -142,14 +142,25 @@ class Articulos extends CI_Controller
         }
         else
         {
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            // Hay que hacer writable el directorio para que funcione.
+            if(!$this->upload->do_upload('userfile'))
+            {
+                echo $this->upload->display_errors();
+            }
+
             $data = array("id" => $id,
                             "nombre" => $this->input->post('nombre'),
                             "descripcion" => $this->input->post('descripcion'),
                             "precio" => $this->input->post('precio'),
                             "stock" => $this->input->post('stock'),
-                            "imagen" => $this->input->post("imagen"));
+                            "imagen" => $this->upload->data('file_name'));
 
-                $this->articulos_model->modificarArticulo($data);
+
+            $this->articulos_model->modificarArticulo($data);
 
             redirect(site_url('perfil/articulos'));
         }
