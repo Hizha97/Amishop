@@ -10,6 +10,7 @@
                     <th scope="col">Cantidad</th>
                     <th scope="col">Precio</th>
                     <th scope="col">Total</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                 echo '<td class="text-center">'. $carrito['cantidad'] . '</td>';
                 echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['precio'] . '€</td>';
                 echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['precio'] * $carrito['cantidad'] . '€</td>';
+                echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('carrito/eliminar/'.$carrito['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
                 echo '</tr>';
                 $total += $articulos[$carrito['idArticulo']]['precio'] * $carrito['cantidad'];
             }

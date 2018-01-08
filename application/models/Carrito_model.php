@@ -14,6 +14,12 @@ class Carrito_model extends CI_Model
         return $query;
     }
 
+    public function getLineaDeCompra($idLineaDeCompra)
+    {
+        $query = $this->db->get_where('lineas_de_compra', array("id" => $idLineaDeCompra));
+        return $query;
+    }
+
     public function anadirArticuloCarrito($idArticulo)
     {
         if (!isset($_SESSION['isLoggedIn']))
@@ -22,13 +28,12 @@ class Carrito_model extends CI_Model
         $idUsuario = $_SESSION['id'];
         $query = $this->db->get_where('lineas_de_compra', array("idUsuario" => $idUsuario, "idArticulo" => $idArticulo));
         $row = $query->row();
-        if(isset($row))
+        if (isset($row))
             $this->aumentarCantidad($idArticulo);
-        else
-        {
+        else {
             $data = array("idArticulo" => $idArticulo,
-                    "idUsuario" => $idUsuario,
-                    "cantidad" => 1);
+                "idUsuario" => $idUsuario,
+                "cantidad" => 1);
             return $this->db->insert('lineas_de_compra', $data);
         }
     }
@@ -40,7 +45,7 @@ class Carrito_model extends CI_Model
         $idUsuario = $_SESSION['id'];
 
         $query = $this->db->get_where('lineas_de_compra', array("idUsuario" => $idUsuario,
-                                                                "idArticulo" => $idArticulo))->result_array();
+            "idArticulo" => $idArticulo))->result_array();
 
         $cantidad = ++$query[0]['cantidad'];
         $data = array("idArticulo" => $idArticulo,
@@ -50,4 +55,10 @@ class Carrito_model extends CI_Model
         $this->db->where('id =', $query[0]['id']);
         $this->db->update('lineas_de_compra');
     }
+
+    public function eliminarLineaDeCompra($id)
+    {
+        return $this->db->delete('lineas_de_compra', array("id" => $id));
+    }
+
 }
