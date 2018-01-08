@@ -38,7 +38,10 @@
                 <h5 class="card-title">El total de la compra es de:</h5>
                 <p class="card-text"><?php echo $total ?>€</p>
                 <?php
-                echo '<a href="'. site_url("pedidos/tarjetasDirecciones") .'"> <button type="button" class="btn btn-primary">Tramitar pedido</button> </a>';
+                if($stockDisponible)
+                    echo '<a href="'. site_url("pedidos/tarjetasDirecciones") .'"> <button type="button" class="btn btn-primary">Tramitar pedido</button> </a>';
+                else
+                    echo  '<button type="button" class="btn btn-disabled disabled">Stock Insuficiente</button>';
                 ?>
             </div>
         </div>

@@ -56,7 +56,7 @@ class Carrito extends CI_Controller
         foreach ($data['carritos'] as $item)
         {
             $articulos = $this->articulos_model->getArticuloWithId($item['idArticulo'])->result_array();
-            if($data['carritos'] < $articulos[0]['stock'])
+            if($data['carritos'] > $articulos[0]['stock'])
                 return false;
         }
         return true;
