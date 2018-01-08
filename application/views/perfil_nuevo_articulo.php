@@ -29,7 +29,7 @@
         <div class="col-12 col-lg-10 mt-5">
             <h1>Añadir artículo.</h1>
             <?php
-            echo form_open("articulos/nuevoArticulo");
+            echo form_open('articulos/nuevoArticulo');
             echo '<fieldset>';
             echo '<div class="form-group row">';
             echo '<label for="staticNombre" class="col-12 col-form-label">Nombre</label>';
@@ -56,13 +56,16 @@
             echo '<input type="text" name="stock" class="form-control" id="stock">';
             echo '</div>';
             echo '</div>';
-            echo form_open_multipart('upload/do_upload');
-            echo '<label for="imagen" class="col-12 col-form-label">Foto</label>';
-            echo '<input type="file" name="imagen" class="form-control-file">';
+            echo form_open_multipart('articulos/do_upload');
+            echo '<input type="file" name="userfile">';
+            echo '<input type="submit" value="upload">';
+            echo form_close();
             echo '<button class="btn float-right btn-primary col-12 mt-2" type="submit">NUEVO ARTICULO</button>';
             echo '</fieldset>';
             echo form_close();
             ?>
+
+
         </div>
     </div>
 </div>

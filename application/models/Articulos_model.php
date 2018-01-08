@@ -30,4 +30,9 @@ class Articulos_model extends CI_Model
     {
         $this->db->delete('articulos', array('id' => $id));
     }
+
+    public function nuevoArticulo($data)
+    {
+        return $this->db->insert('articulos', $data);
+    }
 }

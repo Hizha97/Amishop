@@ -155,8 +155,9 @@ class Articulos extends CI_Controller
 
     public function nuevoArticulo()
     {
-        $this->load->helper("form");
         $this->load->library('form_validation');
+        $this->load->helper("form");
+
         $this->load->model("articulos_model");
 
         $this->form_validation->set_rules('nombre', 'Nxss_clean($data);ombre', 'required');
@@ -176,6 +177,15 @@ class Articulos extends CI_Controller
                 "descripcion" => $this->input->post('descripcion'),
                 "precio" => $this->input->post('precio'),
                 "stock" => $this->input->post('stock'));
+            if(!$this->do_upload())
+            {
+                $this->articulos_model->nuevoArticulo($data);
+            }
+            else
+            {
+                $data['imagen'] = $this->do_upload();
+                $this->articulos_model->nuevoArticulo($data);
+            }
 
             redirect(site_url('perfil/usuarios'));
         }
@@ -187,5 +197,28 @@ class Articulos extends CI_Controller
         $data['articulos'] = $this->articulos_model->getArticulo($amigurumi)->result_array();
 
         return $data;
+    }
+
+    public function foto()
+    {
+        $this->load->library('form_validation');
+        $this->load->view("subir_foto");
+    }
+
+    public function do_upload()
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if($this->upload->do_upload('userfile'))
+        {
+            $nombre = $this->upload->data('file_name');
+             return $nombre;
+        }
+        else
+            return false;
+
+
     }
 }

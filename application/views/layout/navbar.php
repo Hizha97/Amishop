@@ -16,7 +16,7 @@
                 <a class="nav-link" href="<?php echo base_url() ?>">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=" <?php site_url('carrito/mostarCarrito') ?>">Tu Carrito</a>
+                <?php echo '<a class="nav-link " href="'. site_url('carrito'). '"> Tu carrito </i></a>'?>
             </li>
         </ul>
 
