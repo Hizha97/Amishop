@@ -29,10 +29,6 @@
         <div class="col-12 col-lg-10 mt-5">
             <h1>Añadir artículo.</h1>
             <?php
-            echo form_open_multipart('articulos/do_upload');
-            echo '<input type="file" name="userfile">';
-            echo '<input type="submit" value="upload">';
-            echo form_close();
             echo form_open('articulos/nuevoArticulo');
             echo '<fieldset>';
             echo '<div class="form-group row">';
@@ -60,6 +56,17 @@
             echo '<input type="text" name="stock" class="form-control" id="stock">';
             echo '</div>';
             echo '</div>';
+            $fotos = scandir("uploads");
+            echo '<label for="imagen">Selecciona una imagen o sube una nueva</label>';
+            echo '<select class="form-control" id="imagen" name="imagen">';
+            var_dump($fotos);
+            foreach ($fotos as $foto)
+            {
+                echo "<option value=$foto>";
+                echo $foto;
+                echo '</option>';
+            }
+            echo '</select>';
             echo '<button class="btn float-right btn-primary col-12 mt-2" type="submit">NUEVO ARTICULO</button>';
             echo '</fieldset>';
             echo form_close();

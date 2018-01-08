@@ -40,4 +40,5 @@ class Articulos_model extends CI_Model
     {
         return $this->db->replace('articulos', $data);
     }
+
 }
