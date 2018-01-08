@@ -7,7 +7,24 @@
                 $media += $valoracion->valoracion;
                 $cuenta++;
             }
-            echo '<span class="rating">';
+            if($cuenta != 0)
+            {
+                $media = intdiv($media, $cuenta);
+                for($i = 0; $i < 5; $i++)
+                {
+                    if($i <= $cuenta)
+                        echo '<i class="fas fa-star"></i>';
+                    else
+                        echo '<i class="far fa-star"></i>';
+                }
+            }
+            else
+            {
+                for($i = 0; $i < 5; $i++)
+                    echo '<i class="far fa-star"></i>';
+
+            }
+            echo '<span class="rating mt-2">';
             echo form_open(base_url() . 'articulos/nuevaValoracion/' . $articulo['id']);
             echo form_input(array("type" => "radio",
                                     "name" => "valoracion",
