@@ -55,7 +55,7 @@
                     echo "<td>" . $pedido['fechaPedido'] . "</td>";
                     echo "<td>" . $pedido['estado'] . "</td>";
                     echo "<td>" . $pedido['transportista'] . "</td>";
-                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('pedidos/actualizar/'.$pedido['id']).'"> Editar <i class="fas fa-edit"></a></td>';
+                    echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('perfil/modificarPedido/'.$pedido['id']).'"> Editar <i class="fas fa-edit"></a></td>';
                     echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('pedidos/eliminar/'.$pedido['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
                     echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('pedidos/ver/'.$pedido['id']).'"> Ver detalle <i class="fas fa-eye"></a></td>';
 
