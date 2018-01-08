@@ -30,7 +30,7 @@ class Carrito extends CI_Controller
         }
         if(isset($arrayArticulos))
             $data['articulos'] = $arrayArticulos;
-
+        $data['stockDisponible'] = $this->stockDisponible();
         $this->load->view("layout/header", array("title" => "Carrito"));
         $this->load->view("layout/navbar");
         $this->load->view("carrito_view", $data);
@@ -56,8 +56,10 @@ class Carrito extends CI_Controller
         foreach ($data['carritos'] as $item)
         {
             $articulos = $this->articulos_model->getArticuloWithId($item['idArticulo'])->result_array();
-
+            if($data['carritos'] < $articulos[0]['stock'])
+                return false;
         }
+        return true;
     }
 
 }
