@@ -66,7 +66,7 @@
                     $class = $class . "is-valid";
 
                 echo '<div class="form-group row">';
-                echo '<label for="staticFechaEntrega" class="col-12 col-form-label">Numero</label>';
+                echo '<label for="staticFechaEntrega" class="col-12 col-form-label">Fecha de entrega</label>';
                 echo '<div class="col-12">';
                 echo '<input type="text"  name="fechaEntrega" class="'. $class .'" id="staticFechaEntrega" value="' .  set_value('fechaEntrega') . '">';
                 echo form_error('fechaEntrega', '<div class="invalid-feedback">', '</div>');
@@ -84,14 +84,14 @@
 
             echo '<fieldset>';
             echo '<div class="form-group row">';
-            echo '<label for="staticEstado" class="col-12 col-form-label">Nombre</label>';
+                echo '<label for="staticEstado" class="col-12 col-form-label">Estado (puede ser Sin tramitar, En tramite, Enviado, o Finalizado)</label>';
             echo '<div class="col-12">';
             echo '<input type="text"  name="estado" class="form-control" id="staticEstado" value="' . $datos['estado'] . '">';
             echo '</div>';
             echo '</div>';
 
             echo '<div class="form-group row">';
-            echo '<label for="staticFechaEntrega" class="col-12 col-form-label">Numero</label>';
+            echo '<label for="staticFechaEntrega" class="col-12 col-form-label">Fecha de entrega</label>';
             echo '<div class="col-12">';
             echo '<input type="text"  name="fechaEntrega" class="form-control" id="staticFechaEntrega" value="' . $datos['fechaEntrega'] . '">';
             echo '</div>';
