@@ -139,7 +139,7 @@ class Usuarios extends CI_Controller
         {
             $data['usuario'] = $this->usuarios_model->getDataWithId($id);
             $data['usuario']['id'] = $id;
-            $this->load->view("layout/header", array("title" => "Mi perfil"));
+            $this->load->view("layout/header", array("title" => "Modificar Usuario"));
             $this->load->view("layout/navbar");
             $this->load->view("modificar_usuario", $data);
         }

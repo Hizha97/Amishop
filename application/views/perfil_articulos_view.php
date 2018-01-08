@@ -48,7 +48,9 @@
                     echo "<td>" . $articulo['descripcion'] . "</td>";
                     echo "<td class='text-center'>" . $articulo['stock'] . "</td>";
                     echo "<td>" . $articulo['precio'] . "</td>";
-                    echo "<td></td>";
+                    echo "<td>";
+                    echo '<img class="img-thumbnail" display: block" src="data:image/jpeg;base64,'.base64_encode($articulo['imagen']) .' " />';
+                    echo "</td>";
                     echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('articulos/actualizar/'.$articulo['id']).'"> Editar <i class="fas fa-edit"></a></td>';
                     echo '<td class="text-center"><a class="btn btn-secondary d-inline" href="'. site_url('articulos/eliminar/'.$articulo['id']).'"> Eliminar <i class="fas fa-trash"></a></td>';
                     echo "</tr>";
@@ -56,6 +58,9 @@
                 ?>
                 </tbody>
             </table>
+            <?php
+            echo '<a class="btn btn-primary float-left" href="'. site_url('articulos/nuevoArticulo'). '">Añadir articulo</a>';
+            ?>
         </div>
     </div>
 </div>

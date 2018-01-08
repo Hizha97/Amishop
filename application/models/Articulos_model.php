@@ -20,6 +20,12 @@ class Articulos_model extends CI_Model
         return $query;
     }
 
+    public function getArticuloWithId($id)
+    {
+        $query = $this->db->get_where('articulos', array("id" => $id));
+        return $query;
+    }
+
     public function eliminarArticulo($id)
     {
         $this->db->delete('articulos', array('id' => $id));

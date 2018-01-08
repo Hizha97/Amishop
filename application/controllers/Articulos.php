@@ -122,6 +122,65 @@ class Articulos extends CI_Controller
         redirect(site_url('perfil/articulos'));
     }
 
+    public function actualizar($id)
+    {
+        $this->load->helper("form");
+        $this->load->library('form_validation');
+        $this->load->model("articulos_model");
+
+        $this->form_validation->set_rules('nombre', 'Nxss_clean($data);ombre', 'required');
+        $this->form_validation->set_rules('descripcion', 'Descripción', 'required');
+        $this->form_validation->set_rules('precio', 'precio', 'required');
+        $this->form_validation->set_rules('stock', 'Stock', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data['articulos'] = $this->articulos_model->getArticuloWithId($id)->result_array();
+            $this->load->view("layout/header", array("title" => "Modificar Articulo"));
+            $this->load->view("layout/navbar");
+            $this->load->view("perfil_modificar_articulo", $data);
+        }
+        else
+        {
+            $data = array("nombre" => $this->input->post('nombre'),
+                            "descripcion" => $this->input->post('descripcion'),
+                            "precio" => $this->input->post('precio'),
+                            "stock" => $this->input->post('stock'));
+
+            redirect(site_url('perfil/usuarios'));
+        }
+
+
+    }
+
+    public function nuevoArticulo()
+    {
+        $this->load->helper("form");
+        $this->load->library('form_validation');
+        $this->load->model("articulos_model");
+
+        $this->form_validation->set_rules('nombre', 'Nxss_clean($data);ombre', 'required');
+        $this->form_validation->set_rules('descripcion', 'Descripción', 'required');
+        $this->form_validation->set_rules('precio', 'precio', 'required');
+        $this->form_validation->set_rules('stock', 'Stock', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view("layout/header", array("title" => "Nuevo Articulo"));
+            $this->load->view("layout/navbar");
+            $this->load->view("perfil_nuevo_articulo");
+        }
+        else
+        {
+            $data = array("nombre" => $this->input->post('nombre'),
+                "descripcion" => $this->input->post('descripcion'),
+                "precio" => $this->input->post('precio'),
+                "stock" => $this->input->post('stock'));
+
+            redirect(site_url('perfil/usuarios'));
+        }
+    }
+
     private function loadArticulos_model($amigurumi)
     {
         $this->load->model("articulos_model");
