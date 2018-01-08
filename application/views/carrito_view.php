@@ -18,7 +18,7 @@
             foreach ($carritos as $carrito)
             {
                 echo '<tr>';
-                echo '<td class="justify-content-center"> <img height="200" width="200" src="./uploads/'. $articulos[$carrito['idArticulo']]['imagen'] . '"></td>';
+                echo '<td class="justify-content-center"> <img height="200" width="200" src="'. site_url(sprintf("uploads/%s",$articulos[$carrito['idArticulo']]['imagen'])) . '"></td>';
                 echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['nombre'] . '</td>';
                 echo '<td class="text-center">'. $carrito['cantidad'] . '</td>';
                 echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['precio'] . '€</td>';
