@@ -33,7 +33,7 @@
             echo form_open("articulos/actualizar/" . $articulo['id']);
             echo '<fieldset>';
                 echo '<div class="form-group row">';
-                    echo '<label for="staticNombre" class="col-12 col-form-label">Nombre</label>';
+                    echo '<label for="nombre" class="col-12 col-form-label">Nombre</label>';
                     echo '<div class="col-12">';
                         echo '<input type="text"  name="nombre" class="form-control" id="staticNombre" value="'. $articulo['nombre'] .'">';
                     echo '</div>';
@@ -42,7 +42,7 @@
             echo form_textarea(array('type' => 'text',
                 'class' => 'form-control col-12',
                 'name' => 'descripcion',
-                'placeholder' => $articulo['descripcion'],
+                'value' => $articulo['descripcion'],
                 'aria-describedby'=> "fileHelp"));
 
                 echo '<div class="form-group row">';
@@ -58,9 +58,6 @@
                 echo '<input type="text" name="stock" class="form-control" id="stock" value="'. $articulo['stock'] .'">';
                 echo '</div>';
                 echo '</div>';
-            echo form_open_multipart('upload/do_upload');
-            echo '<label for="imagen" class="col-12 col-form-label">Foto</label>';
-            echo '<input type="file" name="imagen" class="form-control-file">';
             echo '<button class="btn float-right btn-primary col-12 mt-2" type="submit">MODIFICAR ARTICULO</button>';
             echo '</fieldset>';
             echo form_close();

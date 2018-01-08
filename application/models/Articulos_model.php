@@ -35,4 +35,9 @@ class Articulos_model extends CI_Model
     {
         return $this->db->insert('articulos', $data);
     }
+
+    public function modificarArticulo($data)
+    {
+        return $this->db->replace('articulos', $data);
+    }
 }

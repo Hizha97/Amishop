@@ -142,12 +142,15 @@ class Articulos extends CI_Controller
         }
         else
         {
-            $data = array("nombre" => $this->input->post('nombre'),
+            $data = array("id" => $id,
+                            "nombre" => $this->input->post('nombre'),
                             "descripcion" => $this->input->post('descripcion'),
                             "precio" => $this->input->post('precio'),
                             "stock" => $this->input->post('stock'));
 
-            redirect(site_url('perfil/usuarios'));
+                $this->articulos_model->modificarArticulo($data);
+
+            redirect(site_url('perfil/articulos'));
         }
 
 
@@ -187,7 +190,7 @@ class Articulos extends CI_Controller
                 $this->articulos_model->nuevoArticulo($data);
             }
 
-            redirect(site_url('perfil/usuarios'));
+            redirect(site_url('perfil/articulos'));
         }
     }
 
