@@ -42,8 +42,12 @@ class Carrito_model extends CI_Model
         $query = $this->db->get_where('lineas_de_compra', array("idUsuario" => $idUsuario,
                                                                 "idArticulo" => $idArticulo))->result_array();
 
-        $cantidad = $query['cantidad']++;
-        $this->db->set('lineas_de_compra', $cantidad);
-        return $this->db->insert('lineas_de_compra');
+        $cantidad = ++$query[0]['cantidad'];
+        $data = array("idArticulo" => $idArticulo,
+            "idUsuario" => $idUsuario,
+            "cantidad" => $cantidad);
+        $this->db->set($data);
+        $this->db->where('id =', $query[0]['id']);
+        $this->db->update('lineas_de_compra');
     }
 }
