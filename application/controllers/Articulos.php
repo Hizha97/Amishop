@@ -208,28 +208,5 @@ class Articulos extends CI_Controller
         return $data;
     }
 
-    public function foto()
-    {
-        $this->load->library('form_validation');
-        $this->load->view("layout/header", array("title" => "Nueva Foto"));
-        $this->load->view("layout/navbar");
-        $this->load->view("subir_foto_view");
-        $this->load->view("layout/footer");
-    }
-
-    public function do_upload()
-    {
-
-        $this->load->model("articulos_model");
-
-        $config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'gif|jpg|jpeg|png';
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        if($this->upload->do_upload('userfile'))
-        {
-            redirect(site_url('perfil/articulos'));
-        }
-
-    }
+ 
 }
