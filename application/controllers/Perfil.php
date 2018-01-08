@@ -93,7 +93,7 @@ class Perfil extends CI_Controller
                 "marca" => $this->input->post('marca')
             );
 
-            if ($this->tarjetas->actualizarTarjetas($data)) {
+            if ($this->tarjetas_model->actualizarTarjeta($data)) {
                 $this->session->set_flashdata('success', true);
                 redirect(site_url('perfil/tarjetas'));
             } else {
