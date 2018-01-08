@@ -62,6 +62,9 @@ class Pedidos extends CI_Controller
                         "estado" => "Sin tramitar",
                         "fechaPedido" => date("Y/m/d"),
                         "fechaEntrega" => $fecha);
+
+        $this->load->view("layout/header", array("title" => "Tramitar pedido"));
+        $this->load->view("layout/navbar");
         if($this->pedidos_model->anadirPedido($data))
         {
             $idPedido = $this->db->insert_id();
@@ -70,7 +73,11 @@ class Pedidos extends CI_Controller
             {
                 $this->db->insert('pedidos_lineasdecompra', array("idPedido" => $idPedido, "idLineaDeCompra" => $lineaDeCompra['id']));
             }
+            $this->load->view("pedido_exito");
         }
+        else
+            $this->load->view("pedido_fallo");
 
+        $this->load->view("layout/footer");
     }
 }

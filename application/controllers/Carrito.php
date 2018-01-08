@@ -44,4 +44,20 @@ class Carrito extends CI_Controller
         redirect(site_url('carrito'));
     }
 
+    public function stockDisponible()
+    {
+        if (!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
+        $this->load->model("articulos_model");
+        $this->load->model("carrito_model");
+        $data['carritos'] = $this->carrito_model->getCarrito($_SESSION['id'])->result_array();
+
+        foreach ($data['carritos'] as $item)
+        {
+            $articulos = $this->articulos_model->getArticuloWithId($item['idArticulo'])->result_array();
+
+        }
+    }
+
 }
