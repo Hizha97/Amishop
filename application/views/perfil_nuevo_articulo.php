@@ -67,6 +67,7 @@
                 echo '</option>';
             }
             echo '</select>';
+            echo ' <a href="'. site_url("articulos/foto") .'"><button type="button" class="btn btn-info mt-2">Nueva foto</button></a>';
             echo '<button class="btn float-right btn-primary col-12 mt-2" type="submit">NUEVO ARTICULO</button>';
             echo '</fieldset>';
             echo form_close();

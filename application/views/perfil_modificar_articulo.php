@@ -58,6 +58,21 @@
                 echo '<input type="text" name="stock" class="form-control" id="stock" value="'. $articulo['stock'] .'">';
                 echo '</div>';
                 echo '</div>';
+            $fotos = scandir("uploads");
+            echo '<label for="imagen">Selecciona una imagen o sube una nueva</label>';
+            echo '<select class="form-control" id="imagen" name="imagen">';
+            var_dump($fotos);
+            foreach ($fotos as $foto)
+            {
+                if($foto == $articulo['imagen'])
+                    echo "<option value=$foto selected='selected'>";
+                else
+                    echo "<option value=$foto>";
+                echo $foto;
+                echo '</option>';
+            }
+            echo '</select>';
+            echo ' <a href="'. site_url("articulos/foto") .'"><button type="button" class="btn btn-info mt-2">Nueva foto</button></a>';
             echo '<button class="btn float-right btn-primary col-12 mt-2" type="submit">MODIFICAR ARTICULO</button>';
             echo '</fieldset>';
             echo form_close();

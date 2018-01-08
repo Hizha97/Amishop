@@ -146,7 +146,8 @@ class Articulos extends CI_Controller
                             "nombre" => $this->input->post('nombre'),
                             "descripcion" => $this->input->post('descripcion'),
                             "precio" => $this->input->post('precio'),
-                            "stock" => $this->input->post('stock'));
+                            "stock" => $this->input->post('stock'),
+                            "imagen" => $this->input->post("imagen"));
 
                 $this->articulos_model->modificarArticulo($data);
 
