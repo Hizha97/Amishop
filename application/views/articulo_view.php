@@ -20,7 +20,8 @@
                             <?php
                                 if(isset($_SESSION['isLoggedIn']) and $articulo['stock'] != 0)
                                 {
-                                    echo '<button type="button" class="btn btn-success">¡Al carrito!</button>';
+                                    $idArticulo = $articulo['id'];
+                                    echo ' <a href="'. site_url("carrito/anadirAlCarrito/$idArticulo") .'" ><button type="button" class="btn btn-success">¡Al carrito!</button></a>';
                                 }
                                 else if($articulo['stock'] == 0)
                                 {

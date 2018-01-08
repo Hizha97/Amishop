@@ -13,16 +13,20 @@ class Carrito extends CI_Controller
         if (!isset($_SESSION['isLoggedIn']))
             redirect(site_url('usuarios/login'));
 
+        $data['usuario'] = $_SESSION['id'];
         $this->load->model("articulos_model");
-        $this->load->model("usuarios_model");
         $this->load->model("carrito_model");
 
         $data['carritos'] = $this->carrito_model->getCarrito($_SESSION['id'])->result_array();
-        $data['usuarios'] = $this->usuarios_model->getDataWithId($_SESSION['id']);
 
         foreach ($data['carritos'] as $item)
         {
-            $arrayArticulos[$item['idArticulo']] = $this->articulos_model->getArticuloWithId($item['idArticulo'])->result_array();
+            $articulos = $this->articulos_model->getArticuloWithId($item['idArticulo'])->result_array();
+            $arrayArticulos[$item['idArticulo']] = array("id" => $articulos[0]['id'],
+                                                         "nombre" => $articulos[0]['nombre'],
+                                                         "stock" => $articulos[0]['stock'],
+                                                         "precio" => $articulos[0]['precio'],
+                                                         "imagen" => $articulos[0]['imagen']);
         }
         if(isset($arrayArticulos))
             $data['articulos'] = $arrayArticulos;
@@ -31,5 +35,13 @@ class Carrito extends CI_Controller
         $this->load->view("layout/navbar");
         $this->load->view("carrito_view", $data);
         $this->load->view("layout/footer");
+    }
+
+    public function anadirAlCarrito($idArticulo)
+    {
+        $this->load->model("carrito_model");
+        $this->carrito_model->anadirArticuloCarrito($idArticulo);
+        redirect(site_url('carrito'));
+
     }
 }

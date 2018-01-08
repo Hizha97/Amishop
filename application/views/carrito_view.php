@@ -1,10 +1,11 @@
-<div class="container-fluid">
+<div class="container mt-3">
     <h1> Tu carrito de la compra. </h1>
     <div class="row">
-            <div class="col-sm-6 col-12">
-            <table class="table table-responsive table-bordered ">
+            <div class="col-sm-12 col-12">
+            <table class="table table-bordered ">
                 <thead class="">
                 <tr>
+                    <th scope="col">Foto</th>
                     <th scope="col">Nombre Articulo</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Precio</th>
@@ -16,10 +17,11 @@
             foreach ($carritos as $carrito)
             {
                 echo '<tr>';
-                echo '<td class="text-center">'. $articulos[$carrito['idArticulo']][0]['nombre'] . '</td>';
+                echo '<td class="justify-content-center"> <img height="200" width="200" src="/Amishop/uploads/'. $articulos[$carrito['idArticulo']]['imagen'] . '"></td>';
+                echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['nombre'] . '</td>';
                 echo '<td class="text-center">'. $carrito['cantidad'] . '</td>';
-                echo '<td class="text-center">'. $articulos[$carrito['idArticulo']][0]['precio'] . '</td>';
-                echo '<td class="text-center">'. $articulos[$carrito['idArticulo']][0]['precio'] * $carrito['cantidad'] . '</td>';
+                echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['precio'] . '€</td>';
+                echo '<td class="text-center">'. $articulos[$carrito['idArticulo']]['precio'] * $carrito['cantidad'] . '€</td>';
                 echo '</tr>';
             }
             ?>
