@@ -17,4 +17,9 @@ class Pedidos_model extends CI_Model
     {
         return $this->db->delete('pedidos', array('id' => $id));
     }
+
+    function anadirPedido($data)
+    {
+        return $this->db->insert('pedidos', $data);
+    }
 }
