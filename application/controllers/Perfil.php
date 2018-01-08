@@ -281,4 +281,20 @@ class Perfil extends CI_Controller
         $this->load->view("perfil_usuarios_view", $data);
         $this->load->view("layout/footer");
     }
+
+    public function pedidos()
+    {
+        if(!isset($_SESSION['isLoggedIn']) and $_SESSION['esAdministrador'])
+            redirect(site_url('usuarios/login'));
+
+        $this->load->model("pedidos_model");
+        // De momento pongo el mockeo
+        $data['pedidos'] = $this->pedidos_model->getAllPedidos();
+        //$data['pedidos'] = $this->pedidos_model->getAllPedidos()->result_array();
+
+        $this->load->view("layout/header", array("title" => "Pedidos"));
+        $this->load->view("layout/navbar");
+        $this->load->view("perfil_pedidos_view", $data);
+        $this->load->view("layout/footer");
+    }
 }

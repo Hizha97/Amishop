@@ -22,6 +22,10 @@
                     echo sprintf('<a href="%s" class="list-group-item list-group-item-action">', site_url('perfil/usuarios'));
                     echo 'Usuarios';
                     echo '</a>';
+
+                    echo sprintf('<a href="%s" class="list-group-item list-group-item-action">', site_url('perfil/pedidos'));
+                    echo 'Pedidos pendientes';
+                    echo '</a>';
                 }
                 ?>
             </div>
