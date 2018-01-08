@@ -9,13 +9,12 @@
 class Pedidos_model extends CI_Model
 {
     function getAllPedidos(){
-        $ret = array();
+        $query = $this->db->get('pedidos');
+        return $query;
+    }
 
-        $ret['numeroPedido']  = "13142";
-        $ret['realizadoPor']  = "usuario";
-        $ret['fechaPeticion'] = "14-04-2017";
-        $ret['estado']  = "En tramite";
-        $ret['transportista'] = "CORREOS";
-        return array($ret); // vacío de momento
+    function eliminarPedido($id)
+    {
+        return $this->db->delete('pedidos', array('id' => $id));
     }
 }

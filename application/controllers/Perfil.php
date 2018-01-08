@@ -288,9 +288,12 @@ class Perfil extends CI_Controller
             redirect(site_url('usuarios/login'));
 
         $this->load->model("pedidos_model");
-        // De momento pongo el mockeo
-        $data['pedidos'] = $this->pedidos_model->getAllPedidos();
-        //$data['pedidos'] = $this->pedidos_model->getAllPedidos()->result_array();
+        $this->load->model("usuarios_model");
+
+        $data['pedidos'] = $this->pedidos_model->getAllPedidos()->result_array();
+
+        foreach($data['pedidos'] as &$pedido)
+            $pedido['realizadoPor'] = $this->usuarios_model->getDataWithId($pedido['idUsuario'])['nombreUsuario'];
 
         $this->load->view("layout/header", array("title" => "Pedidos"));
         $this->load->view("layout/navbar");
