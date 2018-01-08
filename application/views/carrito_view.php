@@ -39,6 +39,8 @@
             <div class="card-body">
                 <h5 class="card-title">El total de la compra es de:</h5>
                 <p class="card-text"><?php echo $total ?>€</p>
+                <hr>
+                <p class="card-text"><?php $iva = ($total*0.21) + $total; echo $iva ?>€ I.V.A 21%</p>
                 <?php
                 if($stockDisponible)
                     echo '<a href="'. site_url("pedidos/tarjetasDirecciones") .'"> <button type="button" class="btn btn-primary">Tramitar pedido</button> </a>';
