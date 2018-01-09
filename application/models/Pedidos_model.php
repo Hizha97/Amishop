@@ -38,6 +38,12 @@ class Pedidos_model extends CI_Model
             return false;
     }
 
+    public function getPedidosUsuario($idUsuario)
+    {
+        $query = $this->db->get_where('pedidos', array("idUsuario" => $idUsuario));
+        return $query;
+    }
+
     public function actualizarPedido($data)
     {
         $this->load->helper('security');

@@ -301,6 +301,25 @@ class Perfil extends CI_Controller
         $this->load->view("layout/footer");
     }
 
+    public function pedidosUsuario($idUsuario)
+    {
+        if(!isset($_SESSION['isLoggedIn']))
+            redirect(site_url('usuarios/login'));
+
+        $this->load->model("pedidos_model");
+        $this->load->model("usuarios_model");
+
+        $data['pedidos'] = $this->pedidos_model->getPedidosUsuario($idUsuario)->result_array();
+
+        foreach($data['pedidos'] as &$pedido)
+            $pedido['realizadoPor'] = $this->usuarios_model->getDataWithId($pedido['idUsuario'])['nombreUsuario'];
+
+        $this->load->view("layout/header", array("title" => "Pedidos"));
+        $this->load->view("layout/navbar");
+        $this->load->view("perfil_pedidos_usuario", $data);
+        $this->load->view("layout/footer");
+    }
+
     public function estado_check($state)
     {
         $this->form_validation->set_message('estado_check', 'The {field} field has to be one of the options.');

@@ -11,6 +11,14 @@
                 <a href="<?php echo site_url('perfil/direcciones') ?>" class="list-group-item list-group-item-action">
                     Direcciones
                 </a>
+                <?php
+                if(isset($_SESSION['esAdministrador']))
+                {?>
+                    <a href="<?php echo site_url('perfil/pedidosUsuario/' . $_SESSION['id']) ?>" class="list-group-item list-group-item-action active">
+                        Pedidos
+                    </a>
+                <?php }
+                ?>
 
                 <?php
                 if(isset($_SESSION['esAdministrador']) and $_SESSION['esAdministrador']) {
