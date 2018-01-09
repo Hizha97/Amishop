@@ -158,7 +158,8 @@ class Articulos extends CI_Controller
             $config['allowed_types'] = 'gif|jpg|jpeg|png';
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
-            // Hay que hacer writable el directorio para que funcione.
+
+                // Hay que hacer writable el directorio para que funcione.
             if(!$this->upload->do_upload('userfile'))
             {
                 echo $this->upload->display_errors();
@@ -168,8 +169,9 @@ class Articulos extends CI_Controller
                             "nombre" => $this->input->post('nombre'),
                             "descripcion" => $this->input->post('descripcion'),
                             "precio" => $this->input->post('precio'),
-                            "stock" => $this->input->post('stock'),
-                            "imagen" => $this->upload->data('file_name'));
+                            "stock" => $this->input->post('stock'));
+            if(strlen($this->upload->data('file_name'))>0)
+                $data["imagen"] = $this->upload->data('file_name');
 
 
             $this->articulos_model->modificarArticulo($data);
