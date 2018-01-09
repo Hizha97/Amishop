@@ -42,5 +42,14 @@ class Articulos_model extends CI_Model
             ->where('id =', $data['id'])
             ->update('articulos');
     }
+    public function reducirStock($data)
+    {
+        $query = $this->getArticuloWithId($data['id'])->row_array();
+        $data['stock'] = $query['stock'] - $data["stock"];
+
+        return $this->db->set($data)
+            ->where('id =', $data['id'])
+            ->update('articulos');
+    }
 
 }

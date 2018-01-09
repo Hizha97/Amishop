@@ -44,6 +44,7 @@ class Pedidos extends CI_Controller
 
         $this->load->model("pedidos_model");
         $this->load->model("carrito_model");
+        $this->load->model("articulos_model");
         date_default_timezone_set("Europe/Madrid");
 
         switch ($this->input->post('transportista'))
@@ -72,6 +73,9 @@ class Pedidos extends CI_Controller
             foreach ($lineasDeCompra as $lineaDeCompra)
             {
                 $this->db->insert('pedidos_lineasdecompra', array("idPedido" => $idPedido, "idLineaDeCompra" => $lineaDeCompra['id']));
+                $reducirStock = array("id" => $lineaDeCompra['idArticulo'],
+                                                            "stock" => $lineaDeCompra['cantidad']);
+                $this->articulos_model->reducirStock($reducirStock);
             }
             $this->load->view("pedido_exito");
         }
