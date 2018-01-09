@@ -58,7 +58,8 @@ class Usuarios_model extends CI_Model
 
         $this->db->select('id, nombre, esAdministrador')
             ->from('usuarios')
-            ->where('nombreUsuario =', $username);
+            ->where('nombreUsuario =', $username)
+            ->or_where('email =', $username);
 
         $query = $this->db->get();
 
