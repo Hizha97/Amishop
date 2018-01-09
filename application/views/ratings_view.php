@@ -12,7 +12,7 @@
                 $media = intdiv($media, $cuenta);
                 for($i = 0; $i < 5; $i++)
                 {
-                    if($i <= $cuenta)
+                    if($i <= $media)
                         echo '<i class="fas fa-star"></i>';
                     else
                         echo '<i class="far fa-star"></i>';
