@@ -31,7 +31,7 @@
                     echo '</a>';
 
 
-                    echo sprintf('<a href="%s" class="list-group-item list-group-item-action active">', site_url('perfil/pedidos'));
+                    echo sprintf('<a href="%s" class="list-group-item list-group-item-action">', site_url('perfil/pedidos'));
                     echo 'Pedidos pendientes';
                     echo '</a>';
                 }
